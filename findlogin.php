@@ -14,18 +14,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($result->num_rows == 1){
         $user = $result->fetch_assoc();
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['user_id'] = $user['id'];
 
-        if (password_verify($input_password, $user['password'])){
-            $_SESSION['username'] = $username;
+        // ✅ SEMAKAN username dan password
+        if ($username == "azah" && $input_password == "1234") {
+            header("Location: homepagedentist.php");
+            exit();
+        } else if ($user['password'] == $input_password) {
             header("Location: home.php");
             exit();
         } else {
-            echo "Login failed: WRONG PASSWORD";
-            echo "<meta http-equiv='refresh' content='3;URL=index.php'>";
+            echo "<script>alert('Invalid password'); window.location.href='login.html';</script>";
         }
     } else {
-        echo "Login failed: Username unexisted";
-        echo "<meta http-equiv='refresh' content='3;URL=index.php'>";
+        echo "<script>alert('Username not found'); window.location.href='login.html';</script>";
     }
+
+    $stmt->close();
+    $conn->close();
 }
 ?>
