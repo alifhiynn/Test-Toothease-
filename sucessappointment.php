@@ -27,7 +27,7 @@ unset($_SESSION['appointment_data']);
 <body>
 
 <div class="container">
-  <h2>Appointment Berjaya Ditempah!</h2>
+  <h2>Appointment is Successful!</h2>
   <div class="success">
     <p><strong>Nama:</strong> <?=htmlspecialchars($data['name'])?></p>
     <p><strong>IC Number:</strong> <?=htmlspecialchars($data['ic_no'])?></p>
