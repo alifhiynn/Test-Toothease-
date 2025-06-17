@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['username'] = $user['username'];
         $_SESSION['user_id'] = $user['id'];
 
-        // ✅ SEMAKAN username dan password
+        //SEMAKAN username dan password
         if ($username == "azah" && $input_password == "1234") {
             header("Location: homepagedentist.php");
             exit();
