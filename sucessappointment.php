@@ -33,8 +33,8 @@ unset($_SESSION['appointment_data']);
     <p><strong>IC Number:</strong> <?=htmlspecialchars($data['ic_no'])?></p>
     <p><strong>Faculty/PTJ:</strong> <?=htmlspecialchars($data['faculty_ptj'])?></p>
     <p><strong>Patient Category:</strong> <?=htmlspecialchars($data['category'])?></p>
-    <p><strong>Tarikh Temu Janji:</strong> <?=htmlspecialchars($data['dateApp'])?></p>
-    <p><strong>Masa Temu Janji:</strong> <?=htmlspecialchars($data['timeApp'])?></p>
+    <p><strong>Date Appointment:</strong> <?=htmlspecialchars($data['dateApp'])?></p>
+    <p><strong>Time Appointment:</strong> <?=htmlspecialchars($data['timeApp'])?></p>
   </div>
 </div>
 
