@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-include ('connection.php');
+include ('connect.php');
 
 // Semak jika bukan dentist login
 if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'azah') {
