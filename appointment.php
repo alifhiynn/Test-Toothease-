@@ -80,18 +80,147 @@ $conn->close();
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#ecf0f1; padding: 20px; }
-    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.15);}
-    label { display: block; margin-top: 10px; }
-    input[type="text"], input[type="date"] { width: 100%; padding: 8px; margin-top: 5px; }
-    button.time-btn {
-      background-color: #3498db; color: white; border: none; padding: 10px 15px; margin: 5px 5px 0 0;
-      border-radius: 6px; cursor: pointer;
-    }
-    button.time-btn.selected { background-color: #1f5f89; }
-    .user-info { background: #f7f9fb; padding: 15px; border-radius: 6px; margin-top: 20px; }
-    .success { color: green; }
-    .error { color: red; }
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f8fb;
+  padding: 40px 15px;
+  color: #333;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  color: #00695c;
+  margin-bottom: 25px;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin: 20px 0 6px;
+  font-weight: 600;
+  color: #004d40;
+}
+
+input[type="text"],
+input[type="date"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #00695c;
+  outline: none;
+}
+
+button,
+input[type="submit"] {
+  background-color: #00695c;
+  color: white;
+  padding: 12px 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background-color: #004d40;
+  box-shadow: 0 5px 12px rgba(0, 105, 92, 0.3);
+}
+
+.user-info {
+  background: #e0f2f1;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  line-height: 1.6;
+}
+
+.user-info p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+
+.success {
+  color: green;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.error {
+  color: red;
+  margin-top: 15px;
+  font-weight: 600;
+}
+
+/* Time Button */
+#timeButtons {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button.time-btn {
+  background-color: #80cbc4;
+  color: #004d40;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button.time-btn.selected {
+  background-color: #00695c;
+  color: white;
+}
+
+button.time-btn:hover {
+  background-color: #4db6ac;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  #timeButtons {
+    flex-direction: column;
+  }
+
+  button.time-btn {
+    width: 100%;
+  }
+}
+
   </style>
 </head>
 <body>
