@@ -3,131 +3,178 @@
 <head>
   <meta charset="UTF-8" />
   <title>ToothEase Home</title>
+
   <style>
-    * {
-      box-sizing: border-box;
-    }
+  /* Reset dan base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f8fb;
-    }
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f9fafd;
+  color: #333;
+  line-height: 1.6;
+}
 
-    /* Navbar */
-    .navbar {
-      background-color: #2980b9;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+/* Navbar */
+.navbar {
+  background-color: #00695c; /* hijau gelap */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
 
-    .navbar h1 {
-      color: white;
-      margin: 0;
-      font-size: 28px;
-    }
+.navbar h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      padding: 10px 16px;
-      margin-left: 10px;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
 
-    .nav-links a:hover {
-      background-color: #1f5f89;
-    }
+.nav-links a:hover {
+  color: #80cbc4; /* hijau muda */
+}
 
-    /* Main content */
-    .content {
-      padding: 40px 20px;
-      text-align: center;
-    }
+/* Main content */
+.content {
+  max-width: 900px;
+  margin: 2rem auto 4rem auto;
+  background: white;
+  padding: 2.5rem 3rem;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+}
 
-    .content h1 {
-      font-size: 34px;
-      color: #2c3e50;
-      margin-bottom: 20px;
-    }
+.header-box h1 {
+  color: #004d40;
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
 
-    .content h2 {
-      font-size: 24px;
-      color: #34495e;
-      margin: 20px 0 10px;
-    }
+.header-box label {
+  display: block;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #00796b;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
 
-    .content h3 {
-      font-size: 18px;
-      color: #555;
-      font-weight: normal;
-    }
+h2 {
+  color: #00796b;
+  font-size: 1.5rem;
+  margin-top: 1.8rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  border-bottom: 2px solid #004d40;
+  padding-bottom: 6px;
+}
 
-    .content ol,
-    .content ul {
-      text-align: left;
-      max-width: 700px;
-      margin: 0 auto 20px;
-      padding-left: 20px;
-    }
+h3 {
+  margin-left: 1rem;
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+  color: #444;
+}
 
-    .content li {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
+ol, ul {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  color: #555;
+  font-size: 1rem;
+}
 
-    .image-gallery {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 30px;
-    }
+/* Image gallery - disusun melintang, penuh lebar, tiada gap */
+.image-gallery {
+  display: flex;
+  flex-wrap: nowrap;       /* melintang tanpa baris baru */
+  width: 100%;             /* penuh lebar container */
+  margin: 0;               /* tiada margin luar */
+  padding: 0;              /* tiada padding luar */
+  overflow-x: auto;        /* scroll jika gambar tak muat */
+}
 
-    .image-gallery img {
-      width: 250px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
+.image-gallery img {
+  flex: 1 1 auto;          /* sama rata */
+  max-height: 150px;       /* tinggi gambar kecil */
+  width: auto;             /* maintain aspect ratio */
+  object-fit: cover;       /* crop kalau perlu */
+  border-radius: 0;        /* buang border radius */
+  box-shadow: none;        /* tiada bayang */
+  margin: 0;               /* tiada jarak antara gambar */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
 
-    /* Button */
-    .btn {
-      display: inline-block;
-      background-color: #3498db;
-      color: white;
-      padding: 14px 28px;
-      font-size: 16px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      margin-top: 30px;
-      text-decoration: none;
-      transition: background 0.3s;
-    }
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
 
-    .btn:hover {
-      background-color: #2471a3;
-    }
+/* Button */
+.btn {
+  display: block;
+  width: max-content;
+  background-color: #00796b;
+  color: white;
+  text-decoration: none;
+  padding: 12px 28px;
+  border-radius: 25px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 3rem auto 0 auto;
+  box-shadow: 0 5px 15px rgb(0 121 107 / 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
 
-    @media (max-width: 768px) {
-      .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .nav-links {
-        margin-top: 10px;
-      }
-      .image-gallery {
-        flex-direction: column;
-        align-items: center;
-      }
-    }
+.btn:hover {
+  background-color: #004d40;
+  box-shadow: 0 8px 20px rgb(0 77 64 / 0.6);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    margin-top: 0.8rem;
+  }
+
+  .image-gallery {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .image-gallery img {
+    max-height: 120px;
+  }
+}
+
   </style>
+
 </head>
 
 <body>
@@ -136,7 +183,7 @@
   <div class="navbar">
     <h1>ToothEase</h1>
     <div class="nav-links">
-      <a href="homepage.php">Home</a>
+      <a href="home.php">Home</a>
       <a href="appointment.php">Book Appointment</a>
       <a href="listappointment.php">List Appointment</a>
       <a href="logout.php">Logout</a>
@@ -145,7 +192,9 @@
 
   <!-- Main Content -->
   <div class="content">
-    <h1>TOOTHEASE PERGIGIAN PKU</h1>
+    <div class="header-box">
+    <h1>SELAMAT DATANG KE TOOTHEASE</h1>
+    <label>SISTEM PERGIGIAN PUSAT KESIHATAN UTeM</label>
 
     <h2>Perkhidmatan pergigian di Pusat Kesihatan UTeM adalah untuk:</h2>
     <h3>
