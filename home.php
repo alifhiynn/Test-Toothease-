@@ -4,9 +4,6 @@
   <meta charset="UTF-8" />
   <title>ToothEase Home</title>
   <link rel="stylesheet" type="text/css" href="home.css">
-
-  
-
 </head>
 
 <body>
