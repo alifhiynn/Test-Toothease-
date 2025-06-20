@@ -45,7 +45,6 @@ if (isset($_POST['book_appointment'])) {
         $stmt = $conn->prepare("INSERT INTO appointment (user_id, dateApp, timeApp) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $user_id, $dateApp, $timeApp);
         if ($stmt->execute()) {
-            if ($stmt->execute()) {
     // Simpan data dalam session untuk dipaparkan
     $_SESSION['appointment_data'] = [
         'name' => $userData['name'],
@@ -63,11 +62,11 @@ if (isset($_POST['book_appointment'])) {
 }
 
         } else {
-            $errorMsg = "Gagal menyimpan appointment: " . $stmt->error;
+            $errorMsg = "Fail to save an Appointment " . $stmt->error;
         }
         $stmt->close();
     } else {
-        $errorMsg = "Sila pilih tarikh dan masa temu janji.";
+        $errorMsg = "Please Choose an Appointment Date.";
     }
 }
 
