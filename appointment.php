@@ -56,8 +56,7 @@ if (isset($_POST['book_appointment']))
             $errorMsg = "Fail to save an Appointment " . $stmt->error;
         }
         $stmt->close();
-    } else {
-        $errorMsg = "Please Choose an Appointment Date.";
+
     }
 
 
@@ -69,149 +68,7 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
-  <style>
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f4f8fb;
-  padding: 40px 15px;
-  color: #333;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-  background: white;
-  padding: 30px 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-h2 {
-  color: #00695c;
-  margin-bottom: 25px;
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-}
-
-label {
-  display: block;
-  margin: 20px 0 6px;
-  font-weight: 600;
-  color: #004d40;
-}
-
-input[type="text"],
-input[type="date"] {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  margin-bottom: 10px;
-  transition: border-color 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="date"]:focus {
-  border-color: #00695c;
-  outline: none;
-}
-
-button,
-input[type="submit"] {
-  background-color: #00695c;
-  color: white;
-  padding: 12px 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-button:hover,
-input[type="submit"]:hover {
-  background-color: #004d40;
-  box-shadow: 0 5px 12px rgba(0, 105, 92, 0.3);
-}
-
-.user-info {
-  background: #e0f2f1;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  line-height: 1.6;
-}
-
-.user-info p {
-  margin: 6px 0;
-  font-size: 1rem;
-}
-
-.success {
-  color: green;
-  font-weight: 600;
-  margin-top: 20px;
-}
-
-.error {
-  color: red;
-  margin-top: 15px;
-  font-weight: 600;
-}
-
-/* Time Button */
-#timeButtons {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-button.time-btn {
-  background-color: #80cbc4;
-  color: #004d40;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
-
-button.time-btn.selected {
-  background-color: #00695c;
-  color: white;
-}
-
-button.time-btn:hover {
-  background-color: #4db6ac;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .container {
-    padding: 20px;
-  }
-
-  #timeButtons {
-    flex-direction: column;
-  }
-
-  button.time-btn {
-    width: 100%;
-  }
-}
-
-  </style>
+   <link rel="stylesheet" href="appointment.css">
 </head>
 <body>
 
@@ -246,7 +103,7 @@ button.time-btn:hover {
     </div>
 
     <?php if ($appointmentSuccess): ?>
-      <p class="success">Appointment berjaya ditempah!</p>
+      <p class="success">Appointment is Successful</p>
     <?php else: ?>
 
       <!-- Step 3: Form pilih tarikh dan masa -->
@@ -260,7 +117,7 @@ button.time-btn:hover {
         <div id="timeButtons">
           <?php
             // Contoh waktu available, kamu boleh ambil dari database atau generate dinamik
-            $availableTimes = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+            $availableTimes = ['8.00','09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
             foreach ($availableTimes as $time) {
                 echo '<button type="button" class="time-btn" data-time="' . $time . '">' . $time . '</button>';
             }

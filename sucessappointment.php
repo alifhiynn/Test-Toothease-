@@ -30,6 +30,20 @@ unset($_SESSION['appointment_data']);
     p { 
       margin: 8px 0;
      }
+     button
+     { 
+      background-color: green; 
+      color: white; 
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer; 
+      font-size: 16px; 
+      display: block; /* Make the button a block-level element */
+      margin-left: auto;
+      margin-right: auto;
+      width: fit-content;
+     }
   </style>
 </head>
 <body>
@@ -43,6 +57,11 @@ unset($_SESSION['appointment_data']);
     <p><strong>Patient Category:</strong> <?=htmlspecialchars($data['category'])?></p>
     <p><strong>Date Appointment:</strong> <?=htmlspecialchars($data['dateApp'])?></p>
     <p><strong>Time Appointment:</strong> <?=htmlspecialchars($data['timeApp'])?></p>
+
+    <br>
+    <a href="home.php">
+    <button>Back to Home</button>
+    </a>
   </div>
 </div>
 
