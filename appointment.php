@@ -65,10 +65,8 @@ if (isset($_POST['book_appointment'])) {
             $errorMsg = "Fail to save an Appointment " . $stmt->error;
         }
         $stmt->close();
-    } else {
-        $errorMsg = "Please Choose an Appointment Date.";
     }
-}
+
 
 $conn->close();
 ?>
