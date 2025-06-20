@@ -27,14 +27,14 @@ unset($_SESSION['appointment_data']);
 <body>
 
 <div class="container">
-  <h2>Appointment Berjaya Ditempah!</h2>
+  <h2>Appointment is Successful!</h2>
   <div class="success">
     <p><strong>Nama:</strong> <?=htmlspecialchars($data['name'])?></p>
     <p><strong>IC Number:</strong> <?=htmlspecialchars($data['ic_no'])?></p>
     <p><strong>Faculty/PTJ:</strong> <?=htmlspecialchars($data['faculty_ptj'])?></p>
     <p><strong>Patient Category:</strong> <?=htmlspecialchars($data['category'])?></p>
-    <p><strong>Tarikh Temu Janji:</strong> <?=htmlspecialchars($data['dateApp'])?></p>
-    <p><strong>Masa Temu Janji:</strong> <?=htmlspecialchars($data['timeApp'])?></p>
+    <p><strong>Date Appointment:</strong> <?=htmlspecialchars($data['dateApp'])?></p>
+    <p><strong>Time Appointment:</strong> <?=htmlspecialchars($data['timeApp'])?></p>
   </div>
 </div>
 

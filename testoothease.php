@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssssssss", $name, $email, $phone, $category, $faculty_ptj, $gender, $ic_no, $student_staff_no, $username, $hashed_password);
 
     if ($stmt->execute()) {
-        echo "<p style='color:green; text-align:center;'>Sign up berjaya! Redirecting to login...</p>";
+        echo "<p style='color:green; text-align:center;'>Sign up successful! Redirecting to login...</p>";
         echo "<script>
                 setTimeout(function() {
                     window.location.href = 'login.php';
