@@ -3,7 +3,7 @@
 session_start();
 include ('connect.php');
 
-// // Semak jika bukan dentist login
+// // Semak jika bukan dentist login 
 // if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'azah') {
 //     header("Location: findlogin.php");
 //     exit();
