@@ -1,3 +1,9 @@
+<?php
+include('connect.php');
+include('homepagedentist.php');
+$result = mysqli_query($conn, "SELECT * FROM treatment_record");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
