@@ -1,6 +1,7 @@
 
         body { 
-            font-family: Arial; padding: 20px; background: #f4f4f4; 
+            font-family: Arial; padding: 20px; 
+            background: linear-gradient(to right, #6dd5fa, #2980b9);
         }
 
         .container { 
