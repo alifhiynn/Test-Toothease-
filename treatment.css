@@ -1,20 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
-    margin: 0;
-    padding: 20px;
 }
 
 .treatment-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: auto;
     background-color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1 {
+    text-align: center;
     color: #333;
     margin-bottom: 20px;
 }
@@ -29,9 +28,7 @@ h1, h2 {
     font-weight: bold;
 }
 
-.form-group input[type="date"],
-.form-group select,
-.form-group textarea {
+.form-group input[type="date"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;
@@ -39,12 +36,7 @@ h1, h2 {
     box-sizing: border-box;
 }
 
-.form-group textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
-.submit-btn, .save-btn {
+.submit-btn {
     background-color: #4CAF50;
     color: white;
     padding: 10px 15px;
@@ -52,24 +44,12 @@ h1, h2 {
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    margin-right: 10px;
+    display: block;
+    margin: 0 auto;
 }
 
-.submit-btn:hover, .save-btn:hover {
+.submit-btn:hover {
     background-color: #45a049;
-}
-
-.cancel-btn {
-    background-color: #f44336;
-    color: white;
-    padding: 10px 15px;
-    text-decoration: none;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.cancel-btn:hover {
-    background-color: #d32f2f;
 }
 
 .records-list {
@@ -113,33 +93,5 @@ h1, h2 {
     margin-top: 20px;
     padding: 15px;
     background-color: #f8f9fa;
-    border-radius: 4px;
-}
-
-.patient-info {
-    margin-bottom: 20px;
-}
-
-.patient-info p {
-    margin: 8px 0;
-    font-size: 16px;
-}
-
-.treatment-form {
-    margin-top: 20px;
-}
-
-hr {
-    border: 0;
-    height: 1px;
-    background-color: #ddd;
-    margin: 20px 0;
-}
-
-.success-message {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #dff0d8;
-    color: #3c763d;
     border-radius: 4px;
 }
