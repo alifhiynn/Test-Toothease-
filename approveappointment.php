@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $stmt = $conn->prepare("
     SELECT a.idApp, a.dateApp, a.timeApp, a.status, u.name 
     FROM appointment a 
-    JOIN user u ON a.user_id = u.id 
+    JOIN user u ON a.id = u.id 
     WHERE a.dateApp = ?
 ");
 $stmt->bind_param("s", $selected_date);
@@ -40,7 +40,7 @@ if ($selected_id) {
     $stmt = $conn->prepare("
         SELECT a.*, u.name, u.faculty_ptj, u.category 
         FROM appointment a 
-        JOIN user u ON a.user_id = u.id 
+        JOIN user u ON a.id = u.id 
         WHERE a.idApp = ?
     ");
     $stmt->bind_param("i", $selected_id);

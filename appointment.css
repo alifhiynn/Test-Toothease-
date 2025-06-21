@@ -12,6 +12,46 @@ body {
   color: #333;
 }
 
+/* Navbar */
+.navbar {
+  background-color: #00695c; /* hijau gelap */
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h1 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem; /* boleh ubah ikut selera */
+  align-items: center;
+}
+
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 2rem;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  font-size: 1rem;
+}
+
+.nav-links a:hover {
+  color: #80cbc4; /* hijau muda */
+}
+
 .container {
   max-width: 700px;
   margin: auto;
@@ -135,5 +175,17 @@ button.time-btn:hover {
 
   button.time-btn {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) 
+{
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    margin-top: 0.8rem;
   }
 }

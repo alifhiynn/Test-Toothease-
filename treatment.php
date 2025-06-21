@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
     // Fetch appointments for the selected date
     $query = "SELECT a.idApp, u.name as patient_name, u.category, a.timeApp
               FROM appointment a
-              JOIN user u ON a.user_id = u.id
+              JOIN user u ON a.id = u.id
               WHERE a.dateApp = ?";
     
     $stmt = $conn->prepare($query);

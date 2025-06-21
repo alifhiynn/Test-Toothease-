@@ -74,14 +74,28 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
-
   <link rel="stylesheet" href="appointment.css">
 
 </head>
 <body>
 
+<!-- Navigation Bar -->
+  <div class="navbar">
+    <h1>ToothEase</h1>
+    <div class="nav-links">
+      <a href="home.php">Home</a>
+      <a href="appointment.php">Book Appointment</a>
+      <a href="listappointment.php">List Appointment</a>
+      <a href="logout.php">Logout</a>
+    </div>
+  </div>
+
+
+  
 <div class="container">
   <h2>Book Appointment</h2>
+
+
 
   <!-- Step 1: Form cari user -->
   <?php if (!$userData): ?>

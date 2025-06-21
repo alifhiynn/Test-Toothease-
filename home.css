@@ -33,6 +33,13 @@ body {
   letter-spacing: 2px;
 }
 
+.nav-links {
+  display: flex;
+  gap: 2rem; /* boleh ubah ikut selera */
+  align-items: center;
+}
+
+
 .nav-links a {
   color: white;
   text-decoration: none;
