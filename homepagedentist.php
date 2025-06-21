@@ -27,8 +27,8 @@ include ('connect.php');
 
   <div class="menu">
     <a href="approve_appointment.php">Approve / Reject Appointment</a>
-    <a href="treatment_record.php">Treatment Record</a>
-    <a href="treatment.php">Treatment History</a>
+    <a href="treatment.php">Treatment Record</a>
+    <a href="treatment_record.php">Treatment History</a>
   </div>
 
   <div class="logout">
