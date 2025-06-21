@@ -3,11 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <title>ToothEase Home</title>
-<<<<<<< HEAD
-  <link rel="stylesheet" type="text\css" href="home.css">
-=======
-  <link rel="stylesheet" type="text/css" href="home.css">
->>>>>>> fd989477e581f1b1626d7004259e37511abf34b0
+
+  <link rel="stylesheet" href="home.css">
 </head>
 
 <body>
