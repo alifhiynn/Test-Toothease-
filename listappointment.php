@@ -59,7 +59,7 @@ if ($ic_no != "" && $student_staff_no != "") {
         $user = $resultUser->fetch_assoc();
         $user_id = $user['id'];
 
-        $stmt2 = $conn->prepare("SELECT * FROM appointment WHERE user_id = ?");
+        $stmt2 = $conn->prepare("SELECT * FROM appointment WHERE id = ?");
         $stmt2->bind_param("i", $user_id);
         $stmt2->execute();
         $resultApp = $stmt2->get_result();
