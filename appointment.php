@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" type="text/css" href="appointment.css">
-</head>
-<body>
-  
-</body>
-</html>
 <?php
+include('connect.php');
 session_start();
 
 // Variabel untuk simpan data user yang dicari
@@ -70,8 +59,6 @@ if (isset($_POST['book_appointment']))
         $stmt->close();
 
     }
-
-
 $conn->close();
 ?>
 
@@ -80,7 +67,11 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
+<<<<<<< HEAD
    <link rel="stylesheet" href="appointment.css">
+=======
+  <link rel="stylesheet" href="appointment.css">
+>>>>>>> 10f88768b8ec6f9f044fe852e357ebf7ba613655
 </head>
 <body>
 
