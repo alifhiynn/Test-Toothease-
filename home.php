@@ -31,7 +31,6 @@
       <ol>
         <li>Pelajar UTeM</li>
         <li>Staf UTeM</li>
-        <li>Keluarga Staf UTeM (dibuka hanya pada cuti semester sahaja)</li>
       </ol>
     </h3>
 

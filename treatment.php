@@ -1,6 +1,7 @@
 <?php
 include('connect.php');
 include('homepagedentist.php');
+<<<<<<< HEAD
 
 // Initialize variables
 $treatment_date = '';
@@ -27,6 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
     }
     $stmt->close();
 }
+=======
+$result = mysqli_query($conn, "SELECT * FROM treatment_record");
+>>>>>>> 19d047ba8fee28a85753f7633e7ab554841985f1
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
 <body>
     <div class="form-container">
         <h1>TREATMENT RECORD</h1>
+<<<<<<< HEAD
         <form method="POST">
             <div class="form-group">
                 <label for="treatment_date">Please select date:</label>
@@ -72,5 +77,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
             </div>
         </div>
     <?php endif; ?>
+=======
+        <form action="process_treatment.php" method="POST">
+            <div class="form-group">
+                <label for="treatment_date">Please select date:</label>
+                <input type="date" id="treatment_date" name="treatment_date" required>
+            </div>
+            
+            <!-- Additional form fields can be added here -->
+            
+            <button type="submit" class="submit-btn">Submit Record</button>
+        </form>
+    </div>
+>>>>>>> 19d047ba8fee28a85753f7633e7ab554841985f1
 </body>
 </html>
