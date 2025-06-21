@@ -5,12 +5,9 @@ body {
     padding: 20px;
     display: flex;
     flex-direction: column;
-<<<<<<< HEAD
-=======
     padding: 0;
     display: flex;
     justify-content: center;
->>>>>>> c3bd2ff8b2448025527897d90527e541ce4214c1
     align-items: center;
     min-height: 100vh;
 }
@@ -118,8 +115,6 @@ input[type="date"] {
 
 .record-btn:hover {
     background-color: #0b7dda;
-<<<<<<< HEAD
-=======
 .record-card p {
     margin: 8px 0;
     line-height: 1.4;
@@ -129,5 +124,4 @@ input[type="date"] {
     display: inline-block;
     min-width: 120px;
     color: #555;
->>>>>>> c3bd2ff8b2448025527897d90527e541ce4214c1
 }
