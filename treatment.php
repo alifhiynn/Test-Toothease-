@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treatment Record</title>
-    <link rel="stylesheet" href="treatment_record.css">
+    <link rel="stylesheet" href="treatment.css">
 </head>
 <body>
     <div class="treatment-container">
