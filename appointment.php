@@ -67,11 +67,9 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
-<<<<<<< HEAD
-   <link rel="stylesheet" href="appointment.css">
-=======
+
   <link rel="stylesheet" href="appointment.css">
->>>>>>> 10f88768b8ec6f9f044fe852e357ebf7ba613655
+
 </head>
 <body>
 
