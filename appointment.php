@@ -28,35 +28,42 @@ if (isset($_POST['search_user'])) {
 // Step 3 & 4 & 5: Bila user pilih tarikh dan masa, simpan appointment
 if (isset($_POST['book_appointment'])) 
 {
-    $user_id = $_POST['user_id'];
-    $dateApp = $_POST['dateApp'] ?? '';
-    $timeApp = $_POST['timeApp'] ?? '';
+    $user_id = $_POST['id'];
+$dateApp = $_POST['dateApp'] ?? '';
+$timeApp = $_POST['timeApp'] ?? '';
 
-    if ($dateApp && $timeApp) {
-        // Simpan appointment ke database
-        $stmt = $conn->prepare("INSERT INTO appointment (user_id, dateApp, timeApp) VALUES (?, ?, ?)");
-        $stmt->bind_param("iss", $user_id, $dateApp, $timeApp);
-        if ($stmt->execute()) {
-    // Simpan data dalam session untuk dipaparkan
-    $_SESSION['appointment_data'] = [
-        'name' => $userData['name'],
-        'ic_no' => $userData['ic_no'],
-        'faculty_ptj' => $userData['faculty_ptj'],
-        'gender' => $userData['gender'],
-        'category' => $userData['category'],
-        'dateApp' => $dateApp,
-        'timeApp' => $timeApp
-    ];
+if ($dateApp && $timeApp) {
 
-    // Redirect ke paparan success
-    header("Location: sucessappointment.php");
-    exit();
+    //Ambil semula data user berdasarkan ID
+    $stmt = $conn->prepare("SELECT name, ic_no, faculty_ptj, gender, category FROM user WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $userData = $result->fetch_assoc();
+    $stmt->close();
+
+    // Simpan appointment ke database
+    $stmt = $conn->prepare("INSERT INTO appointment (id, dateApp, timeApp) VALUES (?, ?, ?)");
+    $stmt->bind_param("iss", $user_id, $dateApp, $timeApp);
+    if ($stmt->execute()) {
+        $_SESSION['appointment_data'] = [
+            'name' => $userData['name'],
+            'ic_no' => $userData['ic_no'],
+            'faculty_ptj' => $userData['faculty_ptj'],
+            'gender' => $userData['gender'],
+            'category' => $userData['category'],
+            'dateApp' => $dateApp,
+            'timeApp' => $timeApp
+        ];
+
+        header("Location: successappointment.php");
+        exit();
+    } else {
+        $errorMsg = "Fail to save an Appointment " . $stmt->error;
+    }
+    $stmt->close();
 }
 
-        } else {
-            $errorMsg = "Fail to save an Appointment " . $stmt->error;
-        }
-        $stmt->close();
 
     }
 $conn->close();
@@ -109,7 +116,7 @@ $conn->close();
 
       <!-- Step 3: Form pilih tarikh dan masa -->
       <form method="POST" action="" id="appointmentForm">
-      <input type="hidden" name="user_id" value="<?=htmlspecialchars($userData['id'])?>" />
+      <input type="hidden" name="id" value="<?=htmlspecialchars($userData['id'])?>" />
 
         <label for="dateApp">Select Date:</label>
         <input type="date" name="dateApp" id="dateApp" required min="<?=date('Y-m-d')?>" />
