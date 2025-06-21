@@ -56,15 +56,7 @@ $conn->close();
 <html>
 <head>
     <title>Approve/Reject Appointment</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f4f4f4; }
-        .container { background: white; padding: 20px; border-radius: 8px; max-width: 700px; margin: auto; }
-        .btn { padding: 10px 15px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
-        .approve { background-color: #4CAF50; color: white; }
-        .reject { background-color: #f44336; color: white; }
-        .appt-list a { display: block; margin: 5px 0; }
-        .msg { color: green; font-weight: bold; }
-    </style>
+    <link rel="stylesheet" href="approveappointment.css">
 </head>
 <body>
 <div class="container">
