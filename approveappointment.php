@@ -98,8 +98,8 @@ $conn->close();
 
         <form method="post" action="">
             <input type="hidden" name="idApp" value="<?= $patientDetails['idApp'] ?>" />
-            <button type="submit" name="status" value="APPROVED" class="btn approve">✅ Approve</button>
-            <button type="submit" name="status" value="REJECTED" class="btn reject">❌ Reject</button>
+            <button type="submit" name="status" value="APPROVED" class="btn approve">Approve</button>
+            <button type="submit" name="status" value="REJECTED" class="btn reject"> Reject</button>
         </form>
     <?php endif; ?>
 
