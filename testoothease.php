@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tr>
         <tr>
           <tr>
-          <td>Identiti Number:</td>
+          <td>IC/Passport Number:</td>
           <td colspan="2"><input type="number" name="number" required /></td>
         </tr>
         <tr>

@@ -1,16 +1,17 @@
-// hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="appointment.css">
+</head>
+<body>
+  
+</body>
+</html>
 <?php
 session_start();
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "testoothease";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 
 // Variabel untuk simpan data user yang dicari
 $userData = null;
@@ -36,7 +37,8 @@ if (isset($_POST['search_user'])) {
 }
 
 // Step 3 & 4 & 5: Bila user pilih tarikh dan masa, simpan appointment
-if (isset($_POST['book_appointment'])) {
+if (isset($_POST['book_appointment'])) 
+{
     $user_id = $_POST['user_id'];
     $dateApp = $_POST['dateApp'] ?? '';
     $timeApp = $_POST['timeApp'] ?? '';
@@ -46,7 +48,6 @@ if (isset($_POST['book_appointment'])) {
         $stmt = $conn->prepare("INSERT INTO appointment (user_id, dateApp, timeApp) VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $user_id, $dateApp, $timeApp);
         if ($stmt->execute()) {
-            if ($stmt->execute()) {
     // Simpan data dalam session untuk dipaparkan
     $_SESSION['appointment_data'] = [
         'name' => $userData['name'],
@@ -64,13 +65,12 @@ if (isset($_POST['book_appointment'])) {
 }
 
         } else {
-            $errorMsg = "Gagal menyimpan appointment: " . $stmt->error;
+            $errorMsg = "Fail to save an Appointment " . $stmt->error;
         }
         $stmt->close();
-    } else {
-        $errorMsg = "Sila pilih tarikh dan masa temu janji.";
+
     }
-}
+
 
 $conn->close();
 ?>
@@ -80,7 +80,11 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
+<<<<<<< HEAD
   <link rel="stylesheet" type="text\css" href="appointment.css">
+=======
+   <link rel="stylesheet" href="appointment.css">
+>>>>>>> fd989477e581f1b1626d7004259e37511abf34b0
 </head>
 <body>
 
@@ -115,7 +119,7 @@ $conn->close();
     </div>
 
     <?php if ($appointmentSuccess): ?>
-      <p class="success">Appointment berjaya ditempah!</p>
+      <p class="success">Appointment is Successful</p>
     <?php else: ?>
 
       <!-- Step 3: Form pilih tarikh dan masa -->
@@ -129,7 +133,7 @@ $conn->close();
         <div id="timeButtons">
           <?php
             // Contoh waktu available, kamu boleh ambil dari database atau generate dinamik
-            $availableTimes = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+            $availableTimes = ['8.00','09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
             foreach ($availableTimes as $time) {
                 echo '<button type="button" class="time-btn" data-time="' . $time . '">' . $time . '</button>';
             }

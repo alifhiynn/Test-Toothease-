@@ -1,0 +1,34 @@
+h2 {
+    text-align: center;
+    color: #4b0082;
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+}
+
+th, td {
+    border: 2px solid blueviolet;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #f0e6ff;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+able, th, td {
+  border: 2px solid pink;
+  width: 50%;
+  border-collapse: collapse;
+  margin: auto;
+  padding: 20px;
+}

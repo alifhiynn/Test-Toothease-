@@ -17,25 +17,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment List</title>
     <link rel="stylesheet" type="text\css" href="listappointment.css">
+<<<<<<< HEAD
+=======
+        
+>>>>>>> fd989477e581f1b1626d7004259e37511abf34b0
 </head>
 <body>
 
 <div class="navbar">
     <h1>ToothEase</h1>
     <div class="nav-links">
-      <a href="home.php">Home</a>
-      <a href="appointment.php">Book Appointment</a>
-      <a href="listappointment.php">List Appointment</a>
-      <a href="logout.php">Logout</a>
+        <a href="home.php">Home</a>
+        <a href="appointment.php">Book Appointment</a>
+        <a href="listappointment.php">List Appointment</a>
+        <a href="logout.php">Logout</a>
     </div>
+</div> <!-- Tutup navbar -->
 
 <h2>List Appointment</h2>
 
 <?php
 if (isset($_GET['msg']) && $_GET['msg'] == 'cancel_success') {
-    echo "<p class='success-msg'> Appointment cancelled successfully.</p>";
+    echo "<p class='success-msg'>Appointment cancelled successfully.</p>";
 }
 ?>
 
@@ -46,9 +53,7 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'cancel_success') {
 </form>
 
 <?php
-
 if ($ic_no != "" && $student_staff_no != "") {
-    // Cari user berdasarkan ic_no & student_staff_no
     $stmt = $conn->prepare("SELECT * FROM user WHERE ic_no = ? AND student_staff_no = ?");
     $stmt->bind_param("ss", $ic_no, $student_staff_no);
     $stmt->execute();
@@ -58,7 +63,6 @@ if ($ic_no != "" && $student_staff_no != "") {
         $user = $resultUser->fetch_assoc();
         $user_id = $user['id'];
 
-        // Dapatkan janji temu user
         $stmt2 = $conn->prepare("SELECT * FROM appointment WHERE user_id = ?");
         $stmt2->bind_param("i", $user_id);
         $stmt2->execute();
@@ -108,7 +112,6 @@ if ($ic_no != "" && $student_staff_no != "") {
 }
 $conn->close();
 ?>
-
 
 </body>
 </html>

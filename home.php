@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>ToothEase Home</title>
+<<<<<<< HEAD
   <link rel="stylesheet" type="text\css" href="home.css">
+=======
+  <link rel="stylesheet" type="text/css" href="home.css">
+>>>>>>> fd989477e581f1b1626d7004259e37511abf34b0
 </head>
 
 <body>
@@ -12,7 +16,7 @@
   <div class="navbar">
     <h1>ToothEase</h1>
     <div class="nav-links">
-      <a href="homepage.php">Home</a>
+      <a href="home.php">Home</a>
       <a href="appointment.php">Book Appointment</a>
       <a href="listappointment.php">List Appointment</a>
       <a href="logout.php">Logout</a>
@@ -21,7 +25,9 @@
 
   <!-- Main Content -->
   <div class="content">
-    <h1>TOOTHEASE PERGIGIAN PKU</h1>
+    <div class="header-box">
+    <h1>SELAMAT DATANG KE TOOTHEASE</h1>
+    <label>SISTEM PERGIGIAN PUSAT KESIHATAN UTeM</label>
 
     <h2>Perkhidmatan pergigian di Pusat Kesihatan UTeM adalah untuk:</h2>
     <h3>

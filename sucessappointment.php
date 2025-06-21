@@ -30,6 +30,11 @@ unset($_SESSION['appointment_data']);
     <p><strong>Patient Category:</strong> <?=htmlspecialchars($data['category'])?></p>
     <p><strong>Date Appointment:</strong> <?=htmlspecialchars($data['dateApp'])?></p>
     <p><strong>Time Appointment:</strong> <?=htmlspecialchars($data['timeApp'])?></p>
+
+    <br>
+    <a href="home.php">
+    <button>Back to Home</button>
+    </a>
   </div>
 </div>
 
