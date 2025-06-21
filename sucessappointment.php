@@ -17,12 +17,7 @@ unset($_SESSION['appointment_data']);
 <head>
   <meta charset="UTF-8">
   <title>Appointment Success - ToothEase</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#ecf0f1; padding: 20px; }
-    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.15); }
-    .success { color: green; font-size: 18px; }
-    p { margin: 8px 0; }
-  </style>
+  <link rel="stylesheet" type="text\css" href="sucessappointment.css">
 </head>
 <body>
 
