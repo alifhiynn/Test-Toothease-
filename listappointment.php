@@ -18,46 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Appointment List</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f7f7f7;
-            padding: 20px;
-        }
-        h2 {
-            color: #333;
-        }
-        form input, form button {
-            padding: 10px;
-            margin: 5px;
-        }
-        table {
-            width: 100%;
-            margin-top: 20px;
-            border-collapse: collapse;
-            background: white;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ccc;
-        }
-        th {
-            background: #4CAF50;
-            color: white;
-        }
-        .cancel-btn {
-            background: #e74c3c;
-            color: white;
-            padding: 6px 12px;
-            border: none;
-            cursor: pointer;
-        }
-        .success-msg {
-            color: green;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-    </style>
+    <link rel="stylesheet" type="text\css" href="listappointment.css">
 </head>
 <body>
 
