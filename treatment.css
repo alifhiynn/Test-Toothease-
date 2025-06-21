@@ -60,3 +60,14 @@ input[type="date"] {
 .submit-btn:hover {
     background-color: #45a049;
 }
+
+.record-card p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.record-card strong {
+    display: inline-block;
+    min-width: 120px;
+    color: #555;
+}
