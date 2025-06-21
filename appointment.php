@@ -80,20 +80,7 @@ $conn->close();
 <head>
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
-  <style>
-    body { font-family: Arial, sans-serif; background:#ecf0f1; padding: 20px; }
-    .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.15);}
-    label { display: block; margin-top: 10px; }
-    input[type="text"], input[type="date"] { width: 100%; padding: 8px; margin-top: 5px; }
-    button.time-btn {
-      background-color: #3498db; color: white; border: none; padding: 10px 15px; margin: 5px 5px 0 0;
-      border-radius: 6px; cursor: pointer;
-    }
-    button.time-btn.selected { background-color: #1f5f89; }
-    .user-info { background: #f7f9fb; padding: 15px; border-radius: 6px; margin-top: 20px; }
-    .success { color: green; }
-    .error { color: red; }
-  </style>
+  <link rel="stylesheet" type="text\css" href="appointment.css">
 </head>
 <body>
 
