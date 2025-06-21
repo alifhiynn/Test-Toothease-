@@ -20,11 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment List</title>
-    <link rel="stylesheet" type="text\css" href="listappointment.css">
-<<<<<<< HEAD
-=======
-        
->>>>>>> fd989477e581f1b1626d7004259e37511abf34b0
+    <link rel="stylesheet"  href="listappointment.css">
 </head>
 <body>
 

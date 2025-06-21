@@ -17,7 +17,7 @@ unset($_SESSION['appointment_data']);
 <head>
   <meta charset="UTF-8">
   <title>Appointment Success - ToothEase</title>
-  <link rel="stylesheet" type="text\css" href="sucessappointment.css">
+  <link rel="stylesheet" href="sucessappointment.css">
 </head>
 <body>
 
