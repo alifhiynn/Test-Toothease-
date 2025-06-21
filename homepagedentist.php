@@ -26,7 +26,7 @@ include ('connect.php');
   <h2>Dentist Dashboard</h2>
 
   <div class="menu">
-    <a href="approve_appointment.php">Approve / Reject Appointment</a>
+    <a href="approveappointment.php">Approve / Reject Appointment</a>
     <a href="treatment_record.php">Treatment Record</a>
     <a href="treatment_record.php">Treatment History</a>
   </div>
