@@ -1,0 +1,106 @@
+/* Reset asas */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Gaya umum badan */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #6dd5fa, #2980b9);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+}
+
+/* Container utama */
+.container {
+  background: #fff;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Tajuk login */
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 20px;
+  color: #2c3e50;
+}
+
+/* Table layout */
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 14px;
+  color: #444;
+}
+
+td {
+  padding: 8px 0;
+}
+
+/* Input field */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+/* Submit button */
+input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 12px;
+}
+
+input[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Link daftar */
+p.center {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+p.center a {
+  color: #3498db;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p.center a:hover {
+  text-decoration: underline;
+}
