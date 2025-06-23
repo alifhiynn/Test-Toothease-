@@ -12,8 +12,8 @@ $appointment_details = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
     $treatment_date = $_POST['treatment_date'];
     
-    // Fetch appointments for the selected date
-    $query = "SELECT a.idApp, u.name as patient_name, u.ic_passport, u.category, a.timeApp, a.dateApp
+    // Fetch appointments for the selected date - updated to match your user table
+    $query = "SELECT a.idApp, u.name, u.ic_no, u.category, a.timeApp, a.dateApp
               FROM appointment a
               JOIN user u ON a.id = u.id
               WHERE a.dateApp = ?";
@@ -34,8 +34,8 @@ if (isset($_GET['id'])) {
     $idApp = intval($_GET['id']);
     $show_record_form = true;
     
-    // Fetch appointment details
-    $query = "SELECT a.idApp, u.name as patient_name, u.ic_passport, a.timeApp, a.dateApp
+    // Fetch appointment details - updated to match your user table
+    $query = "SELECT a.idApp, u.name as patient_name, u.ic_no, a.timeApp, a.dateApp
               FROM appointment a
               JOIN user u ON a.id = u.id
               WHERE a.idApp = ?";
@@ -51,16 +51,16 @@ if (isset($_GET['id'])) {
 // Process treatment record submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
     $idApp = intval($_POST['idApp']);
-    $treatment_type = $_POST['treatment_type'];
-    $notes = $_POST['notes'];
+    $diagnosis = $_POST['diagnosis'];
+    $procedure_done = $_POST['procedure_done'];
     $treatment_date = $_POST['treatment_date'];
     
     // Insert treatment record
-    $insert_query = "INSERT INTO treatment_records (idApp, treatment_type, notes, treatment_date)
+    $insert_query = "INSERT INTO treatment_record (appointment_id, diagnosis, procedure_done, treatment_date)
                      VALUES (?, ?, ?, ?)";
     
     $insert_stmt = $conn->prepare($insert_query);
-    $insert_stmt->bind_param("isss", $idApp, $treatment_type, $notes, $treatment_date);
+    $insert_stmt->bind_param("isss", $idApp, $diagnosis, $procedure_done, $treatment_date);
     $insert_stmt->execute();
     $insert_stmt->close();
     
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
                     <?php foreach ($records as $record): ?>
                         <div class="record-entry">
                             <div class="record-fields">
-                                <p><strong>Patient Name:</strong> <?php echo htmlspecialchars($record['patient_name']); ?></p>
+                                <p><strong>Patient Name:</strong> <?php echo htmlspecialchars($record['name']); ?></p>
                                 <p><strong>Category:</strong> <?php echo htmlspecialchars($record['category']); ?></p>
                                 <p><strong>Time Appointment:</strong> <?php echo htmlspecialchars($record['timeApp']); ?></p>
                             </div>
@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
             <!-- Treatment record form -->
             <div class="patient-info">
                 <p><strong>Patient Name:</strong> <?php echo htmlspecialchars($appointment_details['patient_name'] ?? ''); ?></p>
-                <p><strong>IC no/Passport:</strong> <?php echo htmlspecialchars($appointment_details['ic_passport'] ?? ''); ?></p>
+                <p><strong>IC no:</strong> <?php echo htmlspecialchars($appointment_details['ic_no'] ?? ''); ?></p>
                 <p><strong>Time Appointment:</strong> <?php echo htmlspecialchars($appointment_details['timeApp'] ?? ''); ?></p>
                 <p><strong>Date Appointment:</strong> <?php echo htmlspecialchars($appointment_details['dateApp'] ?? ''); ?></p>
             </div>
@@ -126,21 +126,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
                 <input type="hidden" name="treatment_date" value="<?php echo $appointment_details['dateApp'] ?? ''; ?>">
                 
                 <div class="form-group">
-                    <label for="treatment_type">Type of treatment:</label>
-                    <select id="treatment_type" name="treatment_type" required>
-                        <option value="">Select Treatment</option>
-                        <option value="Filling">Filling</option>
-                        <option value="Extraction">Extraction</option>
-                        <option value="Cleaning">Cleaning</option>
-                        <option value="Root Canal">Root Canal</option>
-                        <option value="Checkup">Checkup</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <label for="diagnosis">Diagnosis:</label>
+                    <textarea id="diagnosis" name="diagnosis" rows="4" placeholder="Enter diagnosis" required></textarea>
                 </div>
                 
                 <div class="form-group">
-                    <label for="notes">Notes:</label>
-                    <textarea id="notes" name="notes" rows="4" placeholder="Input text"></textarea>
+                    <label for="procedure_done">Procedure Done:</label>
+                    <textarea id="procedure_done" name="procedure_done" rows="4" placeholder="Describe the procedure" required></textarea>
                 </div>
                 
                 <div class="form-actions">
