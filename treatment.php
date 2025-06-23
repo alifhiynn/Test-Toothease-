@@ -106,15 +106,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
     <link rel="stylesheet" href="treatment.css">
 </head>
 <body>
-    <div class="treatment-container">
-        <h1>TREATMENT RECORD</h1>
-        
-        <?php if (isset($_GET['success'])): ?>
-            <div class="success-message">
-                Treatment record saved successfully!
-            </div>
-        <?php endif; ?>
-        
+<div class="treatment-container">
+    <h1>TREATMENT RECORD</h1>
+    
+    <?php if (isset($_GET['success'])): ?>
+        <!-- REPLACE this line with the new code -->
+        <div class="success-message" id="successMessage">
+            Treatment record saved successfully!
+        </div>
+        <script>
+            // Hide after 3 seconds (3000 milliseconds)
+            setTimeout(function() {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        </script>
+    <?php endif; ?>
         <?php if (!$show_record_form): ?>
             <!-- Date selection form -->
             <form method="POST">
