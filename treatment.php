@@ -3,7 +3,7 @@ include('connect.php');
 include('homepagedentist.php');
 
 // Initialize variables
-$treatment_date = '';
+$treatment_date = isset($_GET['date']) ? $_GET['date'] : '';
 $records = [];
 $show_record_form = false;
 $appointment_details = [];
@@ -12,8 +12,8 @@ $appointment_details = [];
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['treatment_date'])) {
     $treatment_date = $_POST['treatment_date'];
     
-    // Fetch appointments for the selected date - updated to match your user table
-    $query = "SELECT a.idApp, u.name, u.ic_no, u.category, a.timeApp, a.dateApp
+    // Fetch appointments for the selected date - updated to match your appointment table
+    $query = "SELECT a.idApp, a.id, a.dateApp, a.timeApp, u.name, u.ic_no, u.category
               FROM appointment a
               JOIN user u ON a.id = u.id
               WHERE a.dateApp = ?";
@@ -34,39 +34,66 @@ if (isset($_GET['id'])) {
     $idApp = intval($_GET['id']);
     $show_record_form = true;
     
-    // Fetch appointment details - updated to match your user table
-    $query = "SELECT a.idApp, u.name as patient_name, u.ic_no, a.timeApp, a.dateApp
-              FROM appointment a
-              JOIN user u ON a.id = u.id
-              WHERE a.idApp = ?";
-              
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("i", $idApp);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $appointment_details = $result->fetch_assoc();
-    $stmt->close();
+    // Verify appointment exists first
+    $check_query = "SELECT idApp FROM appointment WHERE idApp = ?";
+    $check_stmt = $conn->prepare($check_query);
+    $check_stmt->bind_param("i", $idApp);
+    $check_stmt->execute();
+    $check_result = $check_stmt->get_result();
+    
+    if ($check_result->num_rows > 0) {
+        // Fetch appointment details - updated to match your tables
+        $query = "SELECT a.idApp, a.dateApp, a.timeApp, u.name as patient_name, u.ic_no
+                  FROM appointment a
+                  JOIN user u ON a.id = u.id
+                  WHERE a.idApp = ?";
+                  
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $idApp);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $appointment_details = $result->fetch_assoc();
+        $stmt->close();
+    } else {
+        die("Invalid appointment ID");
+    }
+    $check_stmt->close();
 }
 
 // Process treatment record submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
-    $idApp = intval($_POST['idApp']);
-    $diagnosis = $_POST['diagnosis'];
-    $procedure_done = $_POST['procedure_done'];
-    $treatment_date = $_POST['treatment_date'];
+    // Validate inputs
+    $idApp = isset($_POST['idApp']) ? intval($_POST['idApp']) : 0;
+    $diagnosis = $_POST['diagnosis'] ?? '';
+    $procedure_done = $_POST['procedure_done'] ?? '';
+    $treatment_date = $_POST['treatment_date'] ?? date('Y-m-d');
     
-    // Insert treatment record
-    $insert_query = "INSERT INTO treatment_record (appointment_id, diagnosis, procedure_done, treatment_date)
-                     VALUES (?, ?, ?, ?)";
+    // Verify appointment exists before inserting
+    $verify_query = "SELECT idApp FROM appointment WHERE idApp = ?";
+    $verify_stmt = $conn->prepare($verify_query);
+    $verify_stmt->bind_param("i", $idApp);
+    $verify_stmt->execute();
+    $verify_result = $verify_stmt->get_result();
     
-    $insert_stmt = $conn->prepare($insert_query);
-    $insert_stmt->bind_param("isss", $idApp, $diagnosis, $procedure_done, $treatment_date);
-    $insert_stmt->execute();
-    $insert_stmt->close();
-    
-    // Redirect back to the date selection
-    header("Location: treatment.php?date=" . urlencode($treatment_date));
-    exit();
+    if ($verify_result->num_rows > 0) {
+        // Insert treatment record
+        $insert_query = "INSERT INTO treatment_record (appointment_id, diagnosis, procedure_done, treatment_date)
+                         VALUES (?, ?, ?, ?)";
+        
+        $insert_stmt = $conn->prepare($insert_query);
+        $insert_stmt->bind_param("isss", $idApp, $diagnosis, $procedure_done, $treatment_date);
+        
+        if ($insert_stmt->execute()) {
+            header("Location: treatment.php?date=" . urlencode($treatment_date) . "&success=1");
+            exit();
+        } else {
+            die("Error saving record: " . $conn->error);
+        }
+        $insert_stmt->close();
+    } else {
+        die("Invalid appointment ID");
+    }
+    $verify_stmt->close();
 }
 ?>
 
@@ -81,6 +108,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
 <body>
     <div class="treatment-container">
         <h1>TREATMENT RECORD</h1>
+        
+        <?php if (isset($_GET['success'])): ?>
+            <div class="success-message">
+                Treatment record saved successfully!
+            </div>
+        <?php endif; ?>
         
         <?php if (!$show_record_form): ?>
             <!-- Date selection form -->
@@ -122,22 +155,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
             </div>
             
             <form method="POST" class="treatment-form">
+                <input type="hidden" name="idApp" value="<?php echo $appointment_details['idApp'] ?? ''; ?>">
+                <input type="hidden" name="treatment_date" value="<?php echo $appointment_details['dateApp'] ?? ''; ?>">
+                
                 <div class="form-group">
-    <label for="diagnosis">Diagnosis:</label>
-    <select id="diagnosis" name="diagnosis" required>
-        <option value="">Select Diagnosis</option>
-        <option value="Dental Caries">Dental Caries</option>
-        <option value="Gingivitis">Gingivitis</option>
-        <option value="Periodontitis">Periodontitis</option>
-        <option value="Tooth Fracture">Tooth Fracture</option>
-        <option value="Impacted Tooth">Impacted Tooth</option>
-        <option value="Oral Thrush">Oral Thrush</option>
-        <option value="Temporomandibular Joint Disorder">Temporomandibular Joint Disorder</option>
-    </select>
-                </div>            
+                    <label for="diagnosis">Diagnosis:</label>
+                    <select id="diagnosis" name="diagnosis" required>
+                        <option value="">Select Diagnosis</option>
+                        <option value="Dental Caries">Dental Caries</option>
+                        <option value="Gingivitis">Gingivitis</option>
+                        <option value="Periodontitis">Periodontitis</option>
+                        <option value="Tooth Fracture">Tooth Fracture</option>
+                        <option value="Impacted Tooth">Impacted Tooth</option>
+                        <option value="Oral Thrush">Oral Thrush</option>
+                        <option value="Temporomandibular Joint Disorder">Temporomandibular Joint Disorder</option>
+                        <option value="Other">Other (Specify in Procedure notes)</option>
+                    </select>
+                </div>
+                
                 <div class="form-group">
-                    <label for="procedure_done">Treatment Notes:</label>
-                    <textarea id="procedure_done" name="procedure_done" rows="4" placeholder="Describe the procedure" required></textarea>
+                    <label for="procedure_done">Procedure notes:</label>
+                    <textarea id="procedure_done" name="procedure_done" rows="4" placeholder="Describe the procedure in detail" required></textarea>
                 </div>
                 
                 <div class="form-actions">
