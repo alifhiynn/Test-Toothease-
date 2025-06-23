@@ -134,12 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
         <option value="Oral Thrush">Oral Thrush</option>
         <option value="Temporomandibular Joint Disorder">Temporomandibular Joint Disorder</option>
     </select>
-                </div>
-                <div class="form-group">
-                    <label for="diagnosis">Diagnosis:</label>
-                    <textarea id="diagnosis" name="diagnosis" rows="4" placeholder="Enter diagnosis" required></textarea>
-                </div>
-                
+                </div>            
                 <div class="form-group">
                     <label for="procedure_done">Treatment Notes:</label>
                     <textarea id="procedure_done" name="procedure_done" rows="4" placeholder="Describe the procedure" required></textarea>
