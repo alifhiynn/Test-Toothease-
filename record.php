@@ -36,9 +36,9 @@ $conn->close();
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>System Rec
+    <title>System Record - ToothEase</title>
 
-        
+
     </title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -51,9 +51,9 @@ $conn->close();
 </head>
 <body>
 
-<h2>Laporan Janji Temu Ikut Bulan</h2>
+<h2>Appointment Report by Month</h2>
 <table>
-    <tr><th>Bulan</th><th>Jumlah Janji Temu</th></tr>
+    <tr><th>Bulan</th><th>Total Appointment</th></tr>
     <?php foreach ($appointmentData as $data): ?>
         <tr>
             <td><?= $data['month'] ?></td>
@@ -62,7 +62,7 @@ $conn->close();
     <?php endforeach; ?>
 </table>
 
-<h2>Jumlah Rawatan Mengikut Kategori</h2>
+<h2>Total Treatment in Category</h2>
 <div class="chart-container">
     <canvas id="categoryChart"></canvas>
 </div>
@@ -92,7 +92,7 @@ new Chart(catCtx, {
         plugins: {
             title: {
                 display: true,
-                text: 'Jumlah Rawatan Mengikut Kategori'
+                text: 'Total Treatment by Category'
             },
             legend: { display: true }
         },
