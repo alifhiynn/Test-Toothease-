@@ -95,18 +95,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <td colspan="2">
             <select name="faculty" required>
               <option value="">Choose</option>
-              <option>FTMK</option>
-              <option>FPTT</option>
-              <option>FTKIP</option>
-              <option>FTKM</option>
-              <option>FKEKK</option>
-              <option>FTKE</option>
-              <option>FAIX</option>
-              <option>PPB</option>
-              <option>CANSELORI</option>
-              <option>PPB</option>
-
-
+              <option>PEJABABAT NAIB CANSELOR, CANSELORI</option>
+              <option>PEJABAT TIMBALAN NAIB CANSELOR (AKEDEMIK & ANTARABANGSA)</option>
+              <option>PEJABAT TIMBALAN NAIB CANSELOR (PENYELIDIKAN & INOVASI)</option>
+              <option>PUSAT PENGURUSAN PENYELIDIKAN & INOVASI</option>
+              <option> PUSAT PENGURUSAN KOLABORASI RICE UTeM-MELAKA</option>
+              <option>PEJABAT TIMBALAN NAIB CANSELOR (HAL EHWAL PELAJAR & ALUMNI)</option>
+              <option>PEJABAT PENOLONG NAIB CANSELOR (STRATEGIK & KELESTARIAN GLOBAL)</option>
+              <option>SEKOLAH PENGAJIAN SISWAZAH</option>
+              <option>PEJABAT KETUA PEGAWAI DIGITAL</option>
+              <option>PERPUSTAKAAN LAMAN HIKMAH</option>
+              <option>PEJABAT BENDAHARI</option>
+              <option>PEJABAT PENDAFTARAN</option>
+              <option>FAKULTI TEKNOLOGI DAN KEJUTERAAN ELEKTRIK (FTKE)</option>
+              <option>FAKULTI TEKNOLOGI DAN KEJUTERAAN ELEKTRONIK DAN KOMPUTER (FTKEK)</option>
+              <option>FAKULTI TEKNOLOGI DAN KEJUTERAAN MEKANIKAL (FTKM)</option>
+              <option>FAKULTI TEKNOLOGI DAN KEJUTERAAN INDUSTRI DAN PEMBUATAN (FTKIP)</option>
+              <option>FAKULTI PENGURUSAN TEKNOLOGI DAN TEKNOUSAHAWANAN (FPTI)</option>
+              <option>FAKULTI TEKNOLOGI MAKLUMAT DAN KOMUNIKASI (FTMK)</option>
+              <option>PUSAT PEMBELAJARAN BAHASA</option>
+              <option>INSTITUT PENGURUSAN TEKNOLOGI DAN KEUSAHAWANAN</option>
+              <option>PUSAT ISLAM</option>
+              <option>PEJABAT PENGURUSAN PEMBANGUNAN</option>
+              <option>PEJABAT PENGURUSAN FASILITI</option>
             </select>
           </td>
         </tr>
