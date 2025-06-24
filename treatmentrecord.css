@@ -1,57 +1,73 @@
-    body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 30px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
+/* Gaya Umum */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px;
+    background-color: #f9f9f9;
+    color: #333;
+}
 
-        h2 {
-            margin-bottom: 20px;
-            font-size: 28px;
-            color: #2c3e50;
-        }
+/* Tajuk Utama */
+h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #2c3e50;
+}
 
-        .btn-home {
-            background-color: #3498db;
-            color: white;
-            padding: 10px 18px;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-        }
+/* Butang Kembali */
+.btn-home {
+    display: inline-block;
+    background-color: #00695c;
+    color: #fff;
+    padding: 10px 18px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
-        .btn-home:hover {
-            background-color: #2980b9;
-        }
+.btn-home:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-            overflow: hidden;
-        }
+/* Jadual Rawatan */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
 
-        th, td {
-            border: 1px solid #e0e0e0;
-            padding: 12px 15px;
-            text-align: left;
-            font-size: 15px;
-        }
+/* Kepala Jadual */
+th {
+    background-color: #00695c;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 15px;
+    border: 1px solid #ddd;
+}
 
-        th {
-            background-color: #3498db;
-            color: white;
-            font-weight: bold;
-        }
+/* Sel Data */
+td {
+    padding: 12px 15px;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    word-wrap: break-word;
+}
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+/* Warna Baris Berselang-seli */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-        tr:hover {
-            background-color: #eaf4fb;
-        }
+/* Hover Effect Baris */
+tr:hover {
+    background-color: #eaf4fb;
+    transition: background-color 0.3s ease;
+}

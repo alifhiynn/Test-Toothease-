@@ -25,6 +25,7 @@ $result = $conn->query($sql);
 <html>
 <head>
     <title>Patient Treatment List</title>
+    <link rel="stylesheet" href="treatmentrecord.css">
     
 </head>
 <body>
