@@ -110,12 +110,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
     <h1>TREATMENT RECORD</h1>
     
     <?php if (isset($_GET['success'])): ?>
-        <!-- REPLACE this line with the new code -->
         <div class="success-message" id="successMessage">
             Treatment record saved successfully!
         </div>
         <script>
-            // Hide after 3 seconds (3000 milliseconds)
+    
             setTimeout(function() {
                 document.getElementById('successMessage').style.display = 'none';
             }, 3000);

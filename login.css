@@ -1,11 +1,10 @@
-/* Reset asas */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Gaya umum badan */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to right, #6adc9b, #00695c); /* hijau gelap */
@@ -16,8 +15,6 @@ body {
   align-items: center;
   color: #333;
 }
-
-/* Container utama */
 .container {
   background: #fff;
   padding: 40px;
@@ -52,7 +49,7 @@ td {
   padding: 8px 0;
 }
 
-/* Input field */
+
 input[type="text"],
 input[type="password"] {
   width: 100%;
@@ -89,7 +86,7 @@ input[type="submit"]:hover {
   background-color: #2980b9;
 }
 
-/* Link daftar */
+/* Link daftar - Signup */
 p.center {
   text-align: center;
   margin-top: 20px;

@@ -1,7 +1,7 @@
 <?php
 include 'connect.php';
 
-// --- 1. Dapatkan bilangan janji temu ikut bulan ---
+// --- 1. Amik bilangan janji temu ikut bulan ---
 $sql1 = "SELECT MONTH(dateApp) AS month, COUNT(*) AS total_appointments FROM appointment GROUP BY MONTH(dateApp)";
 $result1 = $conn->query($sql1);
 
@@ -14,7 +14,7 @@ while ($row = $result1->fetch_assoc()) {
     ];
 }
 
-// --- 2. Dapatkan bilangan rawatan ikut kategori ---
+// --- 2. Untk amik bil rawatan ikut kategpori---
 $sql2 = "SELECT u.category, COUNT(*) AS total_treatment
          FROM treatment_record t
          JOIN appointment a ON t.appointment_id = a.idApp

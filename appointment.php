@@ -2,7 +2,7 @@
 session_start();
 include('connect.php');
 
-// Pastikan user telah login
+// Pastikan user dh login
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -19,7 +19,7 @@ $result = $stmt->get_result();
 $userData = $result->fetch_assoc();
 $stmt->close();
 
-// Senarai tarikh penuh (lebih dari 7 janji temu sehari)
+// Senarai tarikh penuh
 $bookedDates = [];
 $sql = "SELECT dateApp, COUNT(*) as count FROM appointment GROUP BY dateApp HAVING count >= 7";
 $resultDates = $conn->query($sql);

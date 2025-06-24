@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-// Papar senarai janji temu ikut tarikh & nama (jika ada)
+// Papar senarai janji temu ikut tarikh & nama 
 $appointments = [];
 if (!empty($search_name)) {
     $like_name = '%' . $conn->real_escape_string($search_name) . '%';
@@ -47,7 +47,7 @@ while ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// Papar maklumat penuh bila klik salah satu janji temu
+// Tunjuk maklumat penuh bila klik salah satu janji temu
 $patientDetails = null;
 if ($selected_id) {
     $stmt = $conn->prepare("
@@ -75,7 +75,7 @@ $conn->close();
 <div class="container">
     <h2>Appointment Approval</h2>
 
-    <!-- Form carian tarikh dan nama -->
+    <!-- Form cnk pilih tarikh dan nama -->
     <form method="get" action="">
         <label>Select Date:</label>
         <input type="date" name="date" value="<?= htmlspecialchars($selected_date) ?>" />
@@ -84,6 +84,7 @@ $conn->close();
         <input type="text" name="search_name" value="<?= htmlspecialchars($search_name) ?>" />
 
         <input type="submit" value="View" />
+  
     </form>
 
     <hr>
@@ -116,6 +117,10 @@ $conn->close();
     <?php if ($statusMsg): ?>
         <p class="msg"><?= htmlspecialchars($statusMsg) ?></p>
     <?php endif; ?>
+          <!-- Butang kembali ke halaman utama dentist -->
+    <div style="margin-right: 30px;">
+        <a href="homepagedentist.php" class="btn back-home">← Back to Home</a>
+    </div>
 </div>
 </body>
 </html>

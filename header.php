@@ -1,7 +1,3 @@
-<!-- header.php -->
-<?php
-// Kalau perlu, session_start() letak sini, tapi pastikan tak double start session
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

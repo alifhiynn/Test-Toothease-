@@ -8,7 +8,7 @@ if (!isset($_SESSION['appointment_data'])) {
 }
 
 $data = $_SESSION['appointment_data'];
-// Clear data dari session selepas digunakan
+// Clear data dari session lps pakai
 unset($_SESSION['appointment_data']);
 ?>
 

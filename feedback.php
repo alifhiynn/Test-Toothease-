@@ -33,7 +33,7 @@ $stmt->execute();
 $appointmentList = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Proses hantar feedback
+// Proses hntr feedback
 if (isset($_POST['submit_feedback'])) {
     $appointment_id = $_POST['appointment_id'];
     $rating = $_POST['rating'];
@@ -43,7 +43,7 @@ if (isset($_POST['submit_feedback'])) {
     $stmt->bind_param("iis", $appointment_id, $rating, $message);
     if ($stmt->execute()) {
         $success = "Maklum balas berjaya dihantar.";
-        // Refresh senarai selepas hantar
+        // Refresh balik senarai lps hantar
         header("Location: feedback.php");
         exit();
     } else {

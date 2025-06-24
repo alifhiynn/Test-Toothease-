@@ -9,8 +9,7 @@
 
 <body>
 
-  
-  <!-- Main Content -->
+
      <?php include 'header.php'; ?>
 
   <div class="content">

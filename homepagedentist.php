@@ -2,12 +2,7 @@
 session_start();
 include ('connect.php');
 
-// // Semak jika bukan dentist login 
-// if (!isset($_SESSION['username']) || $_SESSION['username'] !== 'azah') {
-//     header("Location: findlogin.php");
-//     exit();
-// }
-// ?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +23,7 @@ include ('connect.php');
   <div class="menu">
 
     <a href="approveappointment.php">Approve / Reject Appointment</a>
-    <a href="treatment_record.php">View Treatment Record</a>
+    <a href="treatmentrecord.php">View Treatment Record</a>
     <a href="treatment.php">Treatment Record</a>
     <a href="viewfeedback.php">View Feedback</a>
     <a href="record.php">System Record</a>

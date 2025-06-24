@@ -1,5 +1,5 @@
 
-  /* Reset dan base */
+
 * {
   margin: 0;
   padding: 0;
@@ -35,7 +35,7 @@ body {
 
 .nav-links {
   display: flex;
-  gap: 2rem; /* boleh ubah ikut selera */
+  gap: 2rem; 
   align-items: center;
 }
 
@@ -105,24 +105,24 @@ ol, ul {
   font-size: 1rem;
 }
 
-/* Image gallery - disusun melintang, penuh lebar, tiada gap */
+/* utk image */
 .image-gallery {
   display: flex;
-  flex-wrap: nowrap;       /* melintang tanpa baris baru */
-  width: 100%;             /* penuh lebar container */
-  margin: 0;               /* tiada margin luar */
-  padding: 0;              /* tiada padding luar */
-  overflow-x: auto;        /* scroll jika gambar tak muat */
+  flex-wrap: nowrap;       
+  width: 100%;             
+  margin: 0;              
+  padding: 0;              
+  overflow-x: auto;       
 }
 
 .image-gallery img {
-  flex: 1 1 auto;          /* sama rata */
-  max-height: 150px;       /* tinggi gambar kecil */
-  width: auto;             /* maintain aspect ratio */
-  object-fit: cover;       /* crop kalau perlu */
-  border-radius: 0;        /* buang border radius */
-  box-shadow: none;        /* tiada bayang */
-  margin: 0;               /* tiada jarak antara gambar */
+  flex: 1 1 auto;          
+  max-height: 150px;       
+  width: auto;            
+  object-fit: cover;       
+  border-radius: 0;        
+  box-shadow: none;       
+  margin: 0;               
   cursor: pointer;
   transition: transform 0.3s ease;
 }
