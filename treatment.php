@@ -167,14 +167,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['save_record'])) {
                     <label for="diagnosis">Diagnosis:</label>
                     <select id="diagnosis" name="diagnosis" required>
                         <option value="">Select Diagnosis</option>
-                        <option value="Dental Caries">Dental Caries</option>
-                        <option value="Gingivitis">Gingivitis</option>
-                        <option value="Periodontitis">Periodontitis</option>
-                        <option value="Tooth Fracture">Tooth Fracture</option>
-                        <option value="Impacted Tooth">Impacted Tooth</option>
-                        <option value="Oral Thrush">Oral Thrush</option>
-                        <option value="Temporomandibular Joint Disorder">Temporomandibular Joint Disorder</option>
-                        <option value="Other">Other (Specify in Procedure notes)</option>
+                        <option value="Scalling">Scalling</option>
+                        <option value="Filling">Filling</option>
+                        <option value="Extraction">Extraction</option>
+                        <option value="Fluoride">Fluoride</option>
                     </select>
                 </div>
                 

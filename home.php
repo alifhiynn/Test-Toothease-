@@ -41,12 +41,7 @@
       </ol>
     </h3>
 
-    <div class="image-gallery">
-      <img src="image/jenis rawatan gigi.jpg" alt="Jenis Rawatan">
-      <img src="image/cara memberus gigi.jpg" alt="Cara memberus gigi">
-      <img src="image/macam mana nak jaga gigi.jpg" alt="Menjaga gigi">
-    </div>
-
+ 
     <a href="appointment.php" class="btn">Book Now</a>
   </div>
 
