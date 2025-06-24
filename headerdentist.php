@@ -17,6 +17,7 @@
     <a href="treatmentrecord.php">View Treatment Record</a>
     <a href="treatment.php">Treatment Record</a>
     <a href="viewfeedback.php">View Feedback</a>
+    <a href="record.php">System Record</a>
   </div>
 
   <div class="logout">
