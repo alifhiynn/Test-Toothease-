@@ -6,14 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $input_password = $_POST['password'];
 
-    // ✅ Special case: Manual login untuk dentist norazah
+    // Special case: Manual login untuk dentist norazah
     if ($username === 'norazah' && $input_password === '1234') {
         $_SESSION['username'] = $username;
         header("Location: homepagedentist.php");
         exit();
     }
 
-    // 🔁 Normal login dari database
+    // Normal login dari database
     $sql = "SELECT * FROM user WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
