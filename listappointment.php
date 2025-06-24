@@ -14,25 +14,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $student_staff_no = $_GET['student_staff_no'];
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <?php include 'header.php'; ?>
     <title>Appointment List</title>
-    <link rel="stylesheet"  href="listappointment.css">
+    <link rel="stylesheet" href="listappointment.css" />
 </head>
 <body>
-
-<div class="navbar">
-    <h1>ToothEase</h1>
-    <div class="nav-links">
-        <a href="home.php">Home</a>
-        <a href="appointment.php">Book Appointment</a>
-        <a href="listappointment.php">List Appointment</a>
-        <a href="logout.php">Logout</a>
-    </div>
-</div> <!-- Tutup navbar -->
 
 <h2>List Appointment</h2>
 
@@ -43,13 +35,14 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'cancel_success') {
 ?>
 
 <form method="POST" action="listappointment.php" id="searchForm">
-    <input type="text" name="ic_no" placeholder="Enter IC No" required value="<?php echo htmlspecialchars($ic_no); ?>">
-    <input type="text" name="student_staff_no" placeholder="Enter Matric/Staff No" required value="<?php echo htmlspecialchars($student_staff_no); ?>">
+    <input type="text" name="ic_no" placeholder="Enter IC No" required value="<?php echo htmlspecialchars($ic_no); ?>" />
+    <input type="text" name="student_staff_no" placeholder="Enter Matric/Staff No" required value="<?php echo htmlspecialchars($student_staff_no); ?>" />
     <button type="submit">Search</button>
 </form>
 
 <?php
 if ($ic_no != "" && $student_staff_no != "") {
+    // Cari user berdasarkan IC dan staff/student no
     $stmt = $conn->prepare("SELECT * FROM user WHERE ic_no = ? AND student_staff_no = ?");
     $stmt->bind_param("ss", $ic_no, $student_staff_no);
     $stmt->execute();
@@ -59,6 +52,7 @@ if ($ic_no != "" && $student_staff_no != "") {
         $user = $resultUser->fetch_assoc();
         $user_id = $user['id'];
 
+        // Dapatkan senarai appointment user bersama status
         $stmt2 = $conn->prepare("SELECT * FROM appointment WHERE id = ?");
         $stmt2->bind_param("i", $user_id);
         $stmt2->execute();
@@ -66,28 +60,35 @@ if ($ic_no != "" && $student_staff_no != "") {
 
         if ($resultApp->num_rows > 0) {
             echo "<h3>Appointments for " . htmlspecialchars($user['name']) . "</h3>";
-            echo "<table>
+            echo "<table border='1' cellpadding='8' cellspacing='0'>
                     <tr>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Name</th>
                         <th>IC</th>
                         <th>Matric No.</th>
+                        <th>Status</th>
                         <th>Action</th>
                     </tr>";
 
             while ($row = $resultApp->fetch_assoc()) {
+                $status = $row['status'] ?? '';
+                if (empty($status)) {
+                    $status = "Pending";
+                }
+
                 echo "<tr>
                         <td>" . htmlspecialchars($row['dateApp']) . "</td>
                         <td>" . htmlspecialchars($row['timeApp']) . "</td>
                         <td>" . htmlspecialchars($user['name']) . "</td>
                         <td>" . htmlspecialchars($user['ic_no']) . "</td>
                         <td>" . htmlspecialchars($user['student_staff_no']) . "</td>
+                        <td>" . htmlspecialchars($status) . "</td>
                         <td>
                             <form method='POST' action='cancelappointment.php' onsubmit='return confirm(\"Are you sure you want to cancel this appointment?\");'>
-                                <input type='hidden' name='idApp' value='" . $row['idApp'] . "'>
-                                <input type='hidden' name='ic_no' value='" . htmlspecialchars($ic_no) . "'>
-                                <input type='hidden' name='student_staff_no' value='" . htmlspecialchars($student_staff_no) . "'>
+                                <input type='hidden' name='idApp' value='" . $row['idApp'] . "' />
+                                <input type='hidden' name='ic_no' value='" . htmlspecialchars($ic_no) . "' />
+                                <input type='hidden' name='student_staff_no' value='" . htmlspecialchars($student_staff_no) . "' />
                                 <button class='cancel-btn' type='submit'>Cancel Appointment</button>
                             </form>
                         </td>
@@ -106,6 +107,7 @@ if ($ic_no != "" && $student_staff_no != "") {
 
     $stmt->close();
 }
+
 $conn->close();
 ?>
 

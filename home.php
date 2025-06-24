@@ -9,18 +9,10 @@
 
 <body>
 
-  <!-- Navigation Bar -->
-  <div class="navbar">
-    <h1>ToothEase</h1>
-    <div class="nav-links">
-      <a href="home.php">Home</a>
-      <a href="appointment.php">Book Appointment</a>
-      <a href="listappointment.php">List Appointment</a>
-      <a href="logout.php">Logout</a>
-    </div>
-  </div>
-
+  
   <!-- Main Content -->
+     <?php include 'header.php'; ?>
+
   <div class="content">
     <div class="header-box">
     <h1>SELAMAT DATANG KE TOOTHEASE</h1>

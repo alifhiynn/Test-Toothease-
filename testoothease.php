@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = new mysqli('localhost', 'root', '', 'testoothease');
+    include('connect.php');
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -75,8 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <tr>
           <tr>
           <td>IC/Passport Number:</td>
-          <td colspan="2"><input type="number" name="number" required /></td>
-        </tr>
+            <td colspan="2">
+               <input type="text" name="number" required pattern="\d{12}" title="IC number must be exactly 12 digits" />
+            </td>      
+             </tr>
         <tr>
           <td>Phone Number:</td>
           <td colspan="2"><input type="number" name="phone" required /></td>
@@ -101,6 +103,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <option>FTKE</option>
               <option>FAIX</option>
               <option>PPB</option>
+              <option>CANSELORI</option>
+              <option>PPB</option>
+
+
             </select>
           </td>
         </tr>
@@ -133,10 +139,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   const category = document.querySelector('input[name="category"]:checked')?.value;
   const email = document.querySelector('input[name="email"]').value.trim();
 
-  const studentRegex = /^D\d{9}@student\.utem\.edu\.my$/i;
+  const studentDRegex = /^D\d{9}@student\.utem\.edu\.my$/i;
+  const studentBRegex = /^B\d{9}@student\.utem\.edu\.my$/i;
+  const studentMRegex = /^M\d{9}@student\.utem\.edu\.my$/i;
+  const studentPRegex = /^P\d{9}@student\.utem\.edu\.my$/i;
+
+
+
   const staffRegex = /^[a-zA-Z0-9._%+-]+@utem\.edu\.my$/i;
 
-  if (category === "Student" && !studentRegex.test(email)) {
+  if (!/^\d{12}$/.test(ic)) {
+    alert("IC number must be exactly 12 digits.");
+    e.preventDefault();
+  } else if (category === "Student" && !studentRegex.test(email)) {
     alert("Please Enter Student UTeM Email");
     e.preventDefault();
   } else if (category === "Staff" && !staffRegex.test(email)) {

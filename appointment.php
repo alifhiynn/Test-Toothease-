@@ -7,12 +7,22 @@ $userData = null;
 $appointmentSuccess = false;
 $errorMsg = "";
 
+// Dapatkan semua tarikh appointment yang dah booked
+$bookedDates = [];
+$sql = "SELECT dateApp, COUNT(*) as count FROM appointment GROUP BY dateApp HAVING count >= 7";
+$resultDates = $conn->query($sql);
+if ($resultDates) {
+    while ($row = $resultDates->fetch_assoc()) {
+        $bookedDates[] = $row['dateApp'];
+    }
+}
+
 // Step 1 & 2: Cari user berdasarkan IC dan no staff/no matriks
 if (isset($_POST['search_user'])) {
     $ic_no = $_POST['ic_no'] ?? '';
     $staff_student_no = $_POST['staff_student_no'] ?? '';
 
-    // Query untuk dapatkan maklumat user - sesuaikan dengan table dan column user kamu
+    // Query untuk dapatkan maklumat user
     $stmt = $conn->prepare("SELECT id, name, ic_no, faculty_ptj, gender, category FROM user WHERE ic_no = ? AND student_staff_no = ?");
     $stmt->bind_param("ss", $ic_no, $staff_student_no);
     $stmt->execute();
@@ -21,51 +31,61 @@ if (isset($_POST['search_user'])) {
     $stmt->close();
 
     if (!$userData) {
-        $errorMsg = "User tidak ditemui. Sila semak IC dan No Staff/Matric anda.";
+        $errorMsg = "User cannot found.Please check your IC and Staff/Matric No.";
     }
 }
 
 // Step 3 & 4 & 5: Bila user pilih tarikh dan masa, simpan appointment
-if (isset($_POST['book_appointment'])) 
-{
+if (isset($_POST['book_appointment'])) {
     $user_id = $_POST['id'];
-$dateApp = $_POST['dateApp'] ?? '';
-$timeApp = $_POST['timeApp'] ?? '';
+    $dateApp = $_POST['dateApp'] ?? '';
+    $timeApp = $_POST['timeApp'] ?? '';
 
-if ($dateApp && $timeApp) {
+    if ($dateApp && $timeApp) {
 
-    //Ambil semula data user berdasarkan ID
-    $stmt = $conn->prepare("SELECT name, ic_no, faculty_ptj, gender, category FROM user WHERE id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $userData = $result->fetch_assoc();
-    $stmt->close();
+        // Semak dulu kalau tarikh tu dah booked, bagi keselamatan (server-side validation)
+        $stmtCheck = $conn->prepare("SELECT COUNT(*) as count FROM appointment WHERE dateApp = ? AND timeApp = ?");
+        $stmtCheck->bind_param("ss", $dateApp, $timeApp);
+        $stmtCheck->execute();
+        $resultCheck = $stmtCheck->get_result();
+        $rowCheck = $resultCheck->fetch_assoc();
+        $stmtCheck->close();
 
-    // Simpan appointment ke database
-    $stmt = $conn->prepare("INSERT INTO appointment (id, dateApp, timeApp) VALUES (?, ?, ?)");
-    $stmt->bind_param("iss", $user_id, $dateApp, $timeApp);
-    if ($stmt->execute()) {
-        $_SESSION['appointment_data'] = [
-            'name' => $userData['name'],
-            'ic_no' => $userData['ic_no'],
-            'faculty_ptj' => $userData['faculty_ptj'],
-            'gender' => $userData['gender'],
-            'category' => $userData['category'],
-            'dateApp' => $dateApp,
-            'timeApp' => $timeApp
-        ];
+        if ($rowCheck['count'] > 0) {
+            $errorMsg = "Date and time selected is already full. Please choose another date and time.";
+        } else {
+            // Ambil semula data user berdasarkan ID
+            $stmt = $conn->prepare("SELECT name, ic_no, faculty_ptj, gender, category FROM user WHERE id = ?");
+            $stmt->bind_param("i", $user_id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $userData = $result->fetch_assoc();
+            $stmt->close();
 
-        header("Location: successappointment.php");
-        exit();
-    } else {
-        $errorMsg = "Fail to save an Appointment " . $stmt->error;
+            // Simpan appointment ke database
+            $stmt = $conn->prepare("INSERT INTO appointment (id, dateApp, timeApp) VALUES (?, ?, ?)");
+            $stmt->bind_param("iss", $user_id, $dateApp, $timeApp);
+            if ($stmt->execute()) {
+                $_SESSION['appointment_data'] = [
+                    'name' => $userData['name'],
+                    'ic_no' => $userData['ic_no'],
+                    'faculty_ptj' => $userData['faculty_ptj'],
+                    'gender' => $userData['gender'],
+                    'category' => $userData['category'],
+                    'dateApp' => $dateApp,
+                    'timeApp' => $timeApp
+                ];
+
+                header("Location: successappointment.php");
+                exit();
+            } else {
+                $errorMsg = "Fail to save appointment: " . $stmt->error;
+            }
+            $stmt->close();
+        }
     }
-    $stmt->close();
 }
 
-
-    }
 $conn->close();
 ?>
 
@@ -75,27 +95,13 @@ $conn->close();
   <meta charset="UTF-8" />
   <title>Book Appointment - ToothEase</title>
   <link rel="stylesheet" href="appointment.css">
-
 </head>
 <body>
 
-<!-- Navigation Bar -->
-  <div class="navbar">
-    <h1>ToothEase</h1>
-    <div class="nav-links">
-      <a href="home.php">Home</a>
-      <a href="appointment.php">Book Appointment</a>
-      <a href="listappointment.php">List Appointment</a>
-      <a href="logout.php">Logout</a>
-    </div>
-  </div>
+<?php include 'header.php'; ?>
 
-
-  
 <div class="container">
   <h2>Book Appointment</h2>
-
-
 
   <!-- Step 1: Form cari user -->
   <?php if (!$userData): ?>
@@ -103,7 +109,7 @@ $conn->close();
       <label for="ic_no">IC Number:</label>
       <input type="text" name="ic_no" id="ic_no" required />
 
-      <label for="matric_no">No Staff / No Matrik Student:</label>
+      <label for="staff_student_no">No Staff / No Matrik Student:</label>
       <input type="text" name="staff_student_no" id="staff_student_no" required />
 
       <button type="submit" name="search_user" style="margin-top:15px; padding:10px 20px;">Search</button>
@@ -114,7 +120,7 @@ $conn->close();
     <?php endif; ?>
 
   <?php else: ?>
-  
+
     <!-- Step 2: Papar maklumat user -->
     <div class="user-info">
       <p><strong>Name:</strong> <?=htmlspecialchars($userData['name'])?></p>
@@ -138,15 +144,13 @@ $conn->close();
         <label>Select Time:</label>
         <div id="timeButtons">
           <?php
-            // Contoh waktu available, kamu boleh ambil dari database atau generate dinamik
-            $availableTimes = ['8.00','09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+            $availableTimes = ['08:00', '09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
             foreach ($availableTimes as $time) {
                 echo '<button type="button" class="time-btn" data-time="' . $time . '">' . $time . '</button>';
             }
           ?>
         </div>
 
-        <!-- input hidden untuk simpan masa yang dipilih -->
         <input type="hidden" name="timeApp" id="timeApp" required />
 
         <br />
@@ -159,16 +163,12 @@ $conn->close();
 
         timeButtons.forEach(btn => {
           btn.addEventListener('click', () => {
-            // Clear semua selected button
             timeButtons.forEach(b => b.classList.remove('selected'));
-            // Tandakan button yang dipilih
             btn.classList.add('selected');
-            // Simpan masa yang dipilih ke hidden input
             timeInput.value = btn.getAttribute('data-time');
           });
         });
 
-        // Validate form submit
         document.getElementById('appointmentForm').addEventListener('submit', function(e) {
           if (!timeInput.value) {
             alert("Sila pilih masa appointment.");
@@ -177,11 +177,25 @@ $conn->close();
         });
       </script>
 
-    <?php endif; ?>
+  <?php endif; ?>
 
   <?php endif; ?>
 
 </div>
+
+<script>
+  const bookedDates = <?= json_encode($bookedDates) ?>;
+  window.addEventListener('DOMContentLoaded', () => {
+    const dateInput = document.getElementById('dateApp');
+
+    dateInput.addEventListener('change', () => {
+      if (bookedDates.includes(dateInput.value)) {
+        alert("Tarikh ini sudah penuh, sila pilih tarikh lain.");
+        dateInput.value = "";
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

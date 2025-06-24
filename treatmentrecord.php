@@ -10,7 +10,7 @@ $result = mysqli_query($conn, "SELECT * FROM treatment_record");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Treatment Record</title>
-    <link rel ="stylesheet"  href = "treatment_record.css">
+    <link rel ="stylesheet"  href = "treatmentrecord.css">
 </head>
 <body>
     <h2>TREATMENTS RECORDS</h2>
