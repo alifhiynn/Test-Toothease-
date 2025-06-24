@@ -2,17 +2,21 @@
 session_start();
 include('connect.php');
 
-$ic_no = "";
-$student_staff_no = "";
-
-// Terima data dari POST (search) atau GET (redirect dari cancel)
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $ic_no = $_POST['ic_no'];
-    $student_staff_no = $_POST['student_staff_no'];
-} elseif (isset($_GET['ic_no']) && isset($_GET['student_staff_no'])) {
-    $ic_no = $_GET['ic_no'];
-    $student_staff_no = $_GET['student_staff_no'];
+// Semak sama ada user dah login
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
 }
+
+$user_id = $_SESSION['user_id'];
+
+// Dapatkan maklumat user
+$stmt = $conn->prepare("SELECT * FROM user WHERE id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$resultUser = $stmt->get_result();
+$user = $resultUser->fetch_assoc();
+$stmt->close();
 ?>
 
 <!DOCTYPE html>
@@ -34,80 +38,51 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'cancel_success') {
 }
 ?>
 
-<form method="POST" action="listappointment.php" id="searchForm">
-    <input type="text" name="ic_no" placeholder="Enter IC No" required value="<?php echo htmlspecialchars($ic_no); ?>" />
-    <input type="text" name="student_staff_no" placeholder="Enter Matric/Staff No" required value="<?php echo htmlspecialchars($student_staff_no); ?>" />
-    <button type="submit">Search</button>
-</form>
+<div class="user-info">
+    <p><strong>Name:</strong> <?= htmlspecialchars($user['name']) ?></p>
+    <p><strong>IC:</strong> <?= htmlspecialchars($user['ic_no']) ?></p>
+    <p><strong>Matric/Staff No:</strong> <?= htmlspecialchars($user['student_staff_no']) ?></p>
+</div>
 
 <?php
-if ($ic_no != "" && $student_staff_no != "") {
-    // Cari user berdasarkan IC dan staff/student no
-    $stmt = $conn->prepare("SELECT * FROM user WHERE ic_no = ? AND student_staff_no = ?");
-    $stmt->bind_param("ss", $ic_no, $student_staff_no);
-    $stmt->execute();
-    $resultUser = $stmt->get_result();
+// Dapatkan senarai appointment user bersama status
+$stmt2 = $conn->prepare("SELECT * FROM appointment WHERE id = ?");
+$stmt2->bind_param("i", $user_id);
+$stmt2->execute();
+$resultApp = $stmt2->get_result();
 
-    if ($resultUser->num_rows > 0) {
-        $user = $resultUser->fetch_assoc();
-        $user_id = $user['id'];
+if ($resultApp->num_rows > 0) {
+    echo "<h3>Your Appointments</h3>";
+    echo "<table border='1' cellpadding='8' cellspacing='0'>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>";
 
-        // Dapatkan senarai appointment user bersama status
-        $stmt2 = $conn->prepare("SELECT * FROM appointment WHERE id = ?");
-        $stmt2->bind_param("i", $user_id);
-        $stmt2->execute();
-        $resultApp = $stmt2->get_result();
+    while ($row = $resultApp->fetch_assoc()) {
+        $status = $row['status'] ?? 'Pending';
 
-        if ($resultApp->num_rows > 0) {
-            echo "<h3>Appointments for " . htmlspecialchars($user['name']) . "</h3>";
-            echo "<table border='1' cellpadding='8' cellspacing='0'>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Name</th>
-                        <th>IC</th>
-                        <th>Matric No.</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>";
-
-            while ($row = $resultApp->fetch_assoc()) {
-                $status = $row['status'] ?? '';
-                if (empty($status)) {
-                    $status = "Pending";
-                }
-
-                echo "<tr>
-                        <td>" . htmlspecialchars($row['dateApp']) . "</td>
-                        <td>" . htmlspecialchars($row['timeApp']) . "</td>
-                        <td>" . htmlspecialchars($user['name']) . "</td>
-                        <td>" . htmlspecialchars($user['ic_no']) . "</td>
-                        <td>" . htmlspecialchars($user['student_staff_no']) . "</td>
-                        <td>" . htmlspecialchars($status) . "</td>
-                        <td>
-                            <form method='POST' action='cancelappointment.php' onsubmit='return confirm(\"Are you sure you want to cancel this appointment?\");'>
-                                <input type='hidden' name='idApp' value='" . $row['idApp'] . "' />
-                                <input type='hidden' name='ic_no' value='" . htmlspecialchars($ic_no) . "' />
-                                <input type='hidden' name='student_staff_no' value='" . htmlspecialchars($student_staff_no) . "' />
-                                <button class='cancel-btn' type='submit'>Cancel Appointment</button>
-                            </form>
-                        </td>
-                    </tr>";
-            }
-
-            echo "</table>";
-        } else {
-            echo "<p>No appointments found for this user.</p>";
-        }
-
-        $stmt2->close();
-    } else {
-        echo "<p>User not found.</p>";
+        echo "<tr>
+                <td>" . htmlspecialchars($row['dateApp']) . "</td>
+                <td>" . htmlspecialchars($row['timeApp']) . "</td>
+                <td>" . htmlspecialchars($status) . "</td>
+                <td>
+                    <form method='POST' action='cancelappointment.php' onsubmit='return confirm(\"Are you sure you want to cancel this appointment?\");'>
+                        <input type='hidden' name='idApp' value='" . $row['idApp'] . "' />
+                        <button class='cancel-btn' type='submit'>Cancel</button>
+                    </form>
+                </td>
+            </tr>";
     }
 
-    $stmt->close();
+    echo "</table>";
+} else {
+    echo "<p>You have no appointments yet.</p>";
 }
 
+$stmt2->close();
 $conn->close();
 ?>
 

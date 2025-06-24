@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Special case: Manual login untuk dentist norazah
     if ($username === 'norazah' && $input_password === '1234') {
         $_SESSION['username'] = $username;
+        $_SESSION['role'] = 'dentist'; // Optional: untuk pengurusan role
         header("Location: homepagedentist.php");
         exit();
     }
@@ -23,15 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
 
-        // Kalau password hash
+        // Semak password
         if (password_verify($input_password, $user['password'])) {
+            // Simpan maklumat ke dalam session
             $_SESSION['username'] = $username;
+            $_SESSION['user_id'] = $user['id']; // Inilah yang penting!
+            $_SESSION['name'] = $user['name'];
 
-            if ($username == 'azah') {
-                header("Location: homepagedentist.php");
-            } else {
-                header("Location: home.php");
-            }
+            header("Location: home.php");
             exit();
         } else {
             echo "Login failed: WRONG PASSWORD";
