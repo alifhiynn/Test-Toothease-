@@ -39,7 +39,7 @@ form textarea {
 form button {
     margin-top: 20px;
     padding: 10px 15px;
-    background-color: #00aaff;
+    background-color: #00695c;
     border: none;
     color: white;
     border-radius: 5px;
@@ -47,7 +47,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #008ecc;
+    background-color: #00695c;
 }
 
 .success {
