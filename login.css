@@ -8,7 +8,7 @@
 /* Gaya umum badan */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to right, #6dd5fa, #2980b9);
+  background: linear-gradient(to right, #6dfa7d, #17960c);
   min-height: 100vh;
   display: flex;
   justify-content: center;
