@@ -70,7 +70,7 @@ $stmt2->close();
     <?php endif; ?>
 
     <?php if ($cancelledCount == 0 && $pendingTreatment == 0): ?>
-      <div class="notice success">✅ Tiada notis baharu untuk hari ini.</div>
+      <div class="notice success">There is no notification today.</div>
     <?php endif; ?>
   </div>
 
