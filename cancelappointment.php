@@ -3,22 +3,39 @@ session_start();
 include('connect.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idApp'])) {
+    
     $idApp = $_POST['idApp'];
-    $ic_no = isset($_POST['ic_no']) ? $_POST['ic_no'] : "";
-    $student_staff_no = isset($_POST['student_staff_no']) ? $_POST['student_staff_no'] : "";
 
-    $stmt = $conn->prepare("DELETE FROM appointment WHERE idApp = ?");
+    // Dapatkan nama patient & id user
+    $stmtInfo = $conn->prepare("SELECT u.name, u.id FROM appointment a JOIN user u ON a.id = u.id WHERE a.idApp = ?");
+    $stmtInfo->bind_param("i", $idApp);
+    $stmtInfo->execute();
+    $result = $stmtInfo->get_result();
+    $data = $result->fetch_assoc();
+    $stmtInfo->close();
+
+    $patientName = $data['name'] ?? "Unknown";
+    $userId = $data['id'] ?? 0;
+
+    // Insert notification hanya guna id_user
+    $message = "$patientName has cancelled their appointment.";
+    
+    $stmtN = $conn->prepare("INSERT INTO notification (message_noti, is_read, id) VALUES (?, 0, ?)");
+    $stmtN->bind_param("si", $message, $userId);
+    $stmtN->execute();
+    $stmtN->close();
+
+    // Update status appointment ke CANCELLED
+    $stmt = $conn->prepare("UPDATE appointment SET status = 'CANCELLED' WHERE idApp = ?");
     $stmt->bind_param("i", $idApp);
 
     if ($stmt->execute()) {
-        // Redirect balik ke listappointment.php dengan pesan dan data input supaya list masih muncul
-        header("Location: listappointment.php?msg=cancel_success&ic_no=" . urlencode($ic_no) . "&student_staff_no=" . urlencode($student_staff_no));
+        header("Location: listappointment.php?msg=cancel_success");
         exit;
     } else {
-        // Kalau gagal delete, beri alert dan redirect balik
         echo "<script>
                 alert('Failed to cancel appointment.');
-                window.location.href = 'listappointment.php?ic_no=" . addslashes($ic_no) . "&student_staff_no=" . addslashes($student_staff_no) . "';
+                window.location.href = 'listappointment.php';
               </script>";
     }
 

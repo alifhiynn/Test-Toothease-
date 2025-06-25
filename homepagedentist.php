@@ -2,8 +2,20 @@
 session_start();
 include('connect.php');
 
+<<<<<<< HEAD
+// Kira notification belum dibaca
+$stmt = $conn->prepare("SELECT COUNT(*) as total FROM notification WHERE is_read = 0");
+$stmt->execute();
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+$totalNotif = $data['total'];
+$stmt->close();
+
+ ?>
+=======
 // Dapatkan hari ini
 $today = date('Y-m-d');
+>>>>>>> dfc52c4c58df926026c863545c241474cb8aa248
 
 // NOTIS: Jumlah janji temu yang dibatalkan hari ini
 $stmt = $conn->prepare("
@@ -89,7 +101,9 @@ $stmt2->close();
     <a href="treatmentrecord.php">View Treatment Record</a>
     <a href="treatment.php">Treatment Record</a>
     <a href="viewfeedback.php">View Feedback</a>
-    <a href="record.php">System Record</a>
+    <a href="record.php">System Record</a> 
+    <a href="viewnotification.php">Notifications (<?= $totalNotif ?>)</a>
+
   </div>
 
   <div class="logout">
