@@ -75,7 +75,7 @@ $conn->close();
 <div class="container">
     <h2>Appointment Approval</h2>
 
-    <!-- Form cnk pilih tarikh dan nama -->
+    <!-- Form nk pilih tarikh dan nama -->
     <form method="get" action="">
         <label>Select Date:</label>
         <input type="date" name="date" value="<?= htmlspecialchars($selected_date) ?>" />

@@ -2,6 +2,14 @@
 session_start();
 include ('connect.php');
 
+// Kira notification belum dibaca
+$stmt = $conn->prepare("SELECT COUNT(*) as total FROM notification WHERE is_read = 0");
+$stmt->execute();
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+$totalNotif = $data['total'];
+$stmt->close();
+
  ?>
 
 <!DOCTYPE html>
@@ -26,7 +34,9 @@ include ('connect.php');
     <a href="treatmentrecord.php">View Treatment Record</a>
     <a href="treatment.php">Treatment Record</a>
     <a href="viewfeedback.php">View Feedback</a>
-    <a href="record.php">System Record</a>
+    <a href="record.php">System Record</a> 
+    <a href="viewnotification.php">Notifications (<?= $totalNotif ?>)</a>
+
   </div>
 
   <div class="logout">

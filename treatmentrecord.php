@@ -31,7 +31,7 @@ $result = $conn->query($sql);
 <body>
 
 <h2>List of Recorded Treatments</h2>
-<a href="homepagedentist.php" class="btn-home">← Kembali ke Laman Utama</a>
+<a href="homepagedentist.php" class="btn-home">← Back to home</a>
 
 <table>
     <tr>

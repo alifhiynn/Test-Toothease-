@@ -46,7 +46,7 @@ if (isset($_GET['msg']) && $_GET['msg'] == 'cancel_success') {
 
 <?php
 // Dapatkan senarai appointment user dgn status
-$stmt2 = $conn->prepare("SELECT * FROM appointment WHERE id = ?");
+$stmt2 = $conn->prepare("SELECT * FROM appointment WHERE id = ? AND status != 'Canceled'");
 $stmt2->bind_param("i", $user_id);
 $stmt2->execute();
 $resultApp = $stmt2->get_result();
