@@ -150,10 +150,13 @@ if (isset($_GET['id'])) {
                 <label for="diagnosis">Diagnosis:</label>
                 <select id="diagnosis" name="diagnosis" required>
                     <option value="">Select Diagnosis</option>
-                    <option value="Scalling">Scalling</option>
-                    <option value="Filling">Filling</option>
-                    <option value="Extraction">Extraction</option>
-                    <option value="Fluoride">Fluoride</option>
+                    <option value="Periapical diseases">Periapical diseases</option>
+                    <option value="Gum disease">Gum disease</option>
+                    <option value="Fractures of human teeth">Fractures of human teeth</option>
+                    <option value="Periodontitis">Periodontitis</option>
+                    <option value="Dental caries">Dental caries</option>
+                    <option value="Dental trauma">Dental trauma</option>    
+
                 </select>
             </div>
 

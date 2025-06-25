@@ -42,12 +42,12 @@ if (isset($_POST['submit_feedback'])) {
     $stmt = $conn->prepare("INSERT INTO feedback (appointment_id, rating, message, timeFeedback) VALUES (?, ?, ?, NOW())");
     $stmt->bind_param("iis", $appointment_id, $rating, $message);
     if ($stmt->execute()) {
-        $success = "Maklum balas berjaya dihantar.";
+        $success = "Feedback success.";
         // Refresh balik senarai lps hantar
         header("Location: feedback.php");
         exit();
     } else {
-        $error = "Gagal hantar maklum balas: " . $stmt->error;
+        $error = "Failed to send feedback: " . $stmt->error;
     }
     $stmt->close();
 }
@@ -86,15 +86,15 @@ $conn->close();
 
             <label>Rating:</label>
             <select name="rating" required>
-                <option value="">-- Pilih --</option>
-                <option value="1">😡 Tidak Puas Hati</option>
-                <option value="2">😟 Kurang Puas Hati</option>
-                <option value="3">😐 Biasa</option>
-                <option value="4">🙂 Puas Hati</option>
-                <option value="5">😁 Sangat Puas Hati</option>
+                <option value="">-- Choose --</option>
+                <option value="1">Not Satisfied</option>
+                <option value="2">Less Satisfied</option>
+                <option value="3">Normal</option>
+                <option value="4">Satisfied</option>
+                <option value="5">Very Satisfied</option>
             </select>
 
-            <label>Komen:</label>
+            <label>Comment:</label>
             <textarea name="message" rows="4" placeholder="Write your feedback."></textarea>
 
             <button type="submit" name="submit_feedback">Send Feedback</button>
