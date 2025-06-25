@@ -1,167 +1,4 @@
-
-    
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #6dd5fa, #2980b9);
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      width: 600px;
-    }
-
-    table {
-      width: 100%;
-    }
-
-    td {
-      padding: 10px;
-    }
-
-    td[colspan="3"] {
-      text-align: center;
-      font-weight: bold;
-      font-size: 18px;
-      padding-bottom: 20px;
-      color: #333;
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="number"],
-    input[type="password"],
-    select {
-      width: 95%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    input[type="radio"] {
-      margin-right: 5px;
-    }
-
-    input[type="submit"],
-    input[type="reset"] {
-      padding: 10px 20px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    input[type="submit"] {
-      background-color: #3498db;
-      color: white;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #2980b9;
-    }
-
-    input[type="reset"] {
-      background-color: #e74c3c;
-      color: white;
-    }
-
-    input[type="reset"]:hover {
-      background-color: #c0392b;
-    }
-
-        /* Tetapan asas */
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #6dd5fa, #2980b9);
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    
-    .container {
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      width: 400px;
-    }
-
-    /* Tajuk login */
-    .login-container h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #333;
-    }
-
-    /* Table layout */
-    table {
-      width: 100%;
-    }
-
-    th {
-      text-align: left;
-      padding: 10px 0;
-      color: #555;
-    }
-
-    
-    input[type="text"],
-    input[type="password"] {
-      width: 95%;
-      padding: 10px;
-      margin: 5px 0 15px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-
-    /* Butang submit */
-    input[type="submit"] {
-      width: 100%;
-      padding: 10px;
-      background-color: #3498db;
-      border: none;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    input[type="submit"]:hover {
-      background-color: #2980b9;
-    }
-
-    /* Teks link daftar */
-    p.center {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    p.center a {
-      color: #3498db;
-      text-decoration: none;
-    }
-
-    p.center a:hover {
-      text-decoration: underline;
-    }
-
-      /* Reset dan base */
+/* Reset dan asas 
 * {
   margin: 0;
   padding: 0;
@@ -170,29 +7,54 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #f9fafd;
+  background: linear-gradient(to right, #6dd5fa, #2980b9);
+  min-height: 100vh;
   color: #333;
-  line-height: 1.6;
 }
 
-/* Navbar */
+
+
 .navbar {
-  background-color: #00695c; /* hijau gelap */
+  background-color: #00695c;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.15);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   position: sticky;
   top: 0;
   z-index: 1000;
 }
 
-.navbar h1 {
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo i {
+  color: white;
+  font-size: 24px;
+}
+
+.logo h1 {
   font-weight: 700;
   font-size: 1.8rem;
   letter-spacing: 2px;
+}
+
+/* Menu ikon (burger) 
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
 }
 
 .nav-links a {
@@ -200,22 +62,152 @@ body {
   text-decoration: none;
   margin-left: 2rem;
   font-weight: 600;
-  transition: color 0.3s ease;
   font-size: 1rem;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #80cbc4; /* hijau muda */
+  color: #80cbc4;
 }
 
-/* Main content */
+/* Responsive navbar 
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background-color: #00695c;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  .nav-links a {
+    margin: 10px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+
+/* FORM CONTAINER        
+
+
+.container {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+/* Tajuk login/daftar 
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Table layout (jika digunakan) 
+table {
+  width: 100%;
+}
+
+td, th {
+  padding: 10px;
+  text-align: left;
+  color: #555;
+}
+
+td[colspan="3"] {
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  padding-bottom: 20px;
+  color: #333;
+}
+
+/* Input fields 
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+/* Submit & Reset Button 
+input[type="submit"],
+input[type="reset"] {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+}
+
+input[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+input[type="reset"] {
+  background-color: #e74c3c;
+  color: white;
+}
+
+input[type="reset"]:hover {
+  background-color: #c0392b;
+}
+
+
+p.center {
+  text-align: center;
+  margin-top: 20px;
+}
+
+p.center a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+p.center a:hover {
+  text-decoration: underline;
+}
+
+/* CONTENT SECTION       
 .content {
   max-width: 900px;
-  margin: 2rem auto 4rem auto;
+  margin: 2rem auto;
   background: white;
   padding: 2.5rem 3rem;
   border-radius: 8px;
-  box-shadow: 0 8px 20px rgb(0 0 0 / 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .header-box h1 {
@@ -260,33 +252,10 @@ ol, ul {
   font-size: 1rem;
 }
 
-/* Image gallery - disusun melintang, penuh lebar, tiada gap */
-.image-gallery {
-  display: flex;
-  flex-wrap: nowrap;       /* melintang tanpa baris baru */
-  width: 100%;             /* penuh lebar container */
-  margin: 0;               /* tiada margin luar */
-  padding: 0;              /* tiada padding luar */
-  overflow-x: auto;        /* scroll jika gambar tak muat */
-}
 
-.image-gallery img {
-  flex: 1 1 auto;          /* sama rata */
-  max-height: 150px;       /* tinggi gambar kecil */
-  width: auto;             /* maintain aspect ratio */
-  object-fit: cover;       /* crop kalau perlu */
-  border-radius: 0;        /* buang border radius */
-  box-shadow: none;        /* tiada bayang */
-  margin: 0;               /* tiada jarak antara gambar */
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
+/* button 
 
-.image-gallery img:hover {
-  transform: scale(1.05);
-}
 
-/* Button */
 .btn {
   display: block;
   width: max-content;
@@ -298,33 +267,12 @@ ol, ul {
   font-weight: 700;
   font-size: 1.1rem;
   margin: 3rem auto 0 auto;
-  box-shadow: 0 5px 15px rgb(0 121 107 / 0.4);
+  box-shadow: 0 5px 15px rgba(0, 121, 107, 0.4);
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
 }
 
 .btn:hover {
   background-color: #004d40;
-  box-shadow: 0 8px 20px rgb(0 77 64 / 0.6);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .nav-links {
-    margin-top: 0.8rem;
-  }
-
-  .image-gallery {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-  }
-
-  .image-gallery img {
-    max-height: 120px;
-  }
+  box-shadow: 0 8px 20px rgba(0, 77, 64, 0.6);
 }

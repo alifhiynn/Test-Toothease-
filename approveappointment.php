@@ -7,7 +7,23 @@ $selected_id = $_GET['id'] ?? null;
 $search_name = $_GET['search_name'] ?? '';
 $statusMsg = "";
 
-// Jika submit approve/reject
+// 1. Notis pembatalan janji temu ikut tarikh dipilih
+$cancelledAppointments = [];
+$cancel_stmt = $conn->prepare("
+    SELECT a.timeApp, u.name 
+    FROM appointment a
+    JOIN user u ON a.id = u.id
+    WHERE a.status = 'CANCELLED' AND a.dateApp = ?
+");
+$cancel_stmt->bind_param("s", $selected_date);
+$cancel_stmt->execute();
+$result_cancel = $cancel_stmt->get_result();
+while ($row = $result_cancel->fetch_assoc()) {
+    $cancelledAppointments[] = $row;
+}
+$cancel_stmt->close();
+
+// 2. Jika submit approve/reject
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $app_id = $_POST['idApp'];
     $status = $_POST['status'];
@@ -19,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
 }
 
-// Papar senarai janji temu ikut tarikh & nama 
+// 3. Papar senarai janji temu ikut tarikh & nama 
 $appointments = [];
 if (!empty($search_name)) {
     $like_name = '%' . $conn->real_escape_string($search_name) . '%';
@@ -47,7 +63,7 @@ while ($row = $result->fetch_assoc()) {
 }
 $stmt->close();
 
-// Tunjuk maklumat penuh bila klik salah satu janji temu
+// 4. Tunjuk maklumat penuh bila klik salah satu janji temu
 $patientDetails = null;
 if ($selected_id) {
     $stmt = $conn->prepare("
@@ -70,12 +86,49 @@ $conn->close();
 <head>
     <title>Approve/Reject Appointment</title>
     <link rel="stylesheet" href="approveappointment.css">
+    <style>
+        .notice-box {
+            border: 1px solid red;
+            background: #ffe6e6;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .btn {
+            padding: 6px 12px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .approve { background-color: #4CAF50; color: white; }
+        .reject { background-color: #f44336; color: white; }
+        .back-home {
+            background-color: #555;
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+        }
+        .back-home:hover { background-color: #333; }
+    </style>
 </head>
 <body>
 <div class="container">
     <h2>Appointment Approval</h2>
 
-    <!-- Form cnk pilih tarikh dan nama -->
+    <!-- Notis pembatalan janji temu -->
+    <?php if (!empty($cancelledAppointments)): ?>
+        <div class="notice-box">
+            <strong>Patients who have canceled appointments (<?= htmlspecialchars($selected_date) ?>):</strong>
+            <ul>
+                <?php foreach ($cancelledAppointments as $cancel): ?>
+                    <li><?= htmlspecialchars($cancel['timeApp']) ?> - <?= htmlspecialchars($cancel['name']) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
+    <!-- Form pilih tarikh dan nama -->
     <form method="get" action="">
         <label>Select Date:</label>
         <input type="date" name="date" value="<?= htmlspecialchars($selected_date) ?>" />
@@ -84,7 +137,6 @@ $conn->close();
         <input type="text" name="search_name" value="<?= htmlspecialchars($search_name) ?>" />
 
         <input type="submit" value="View" />
-  
     </form>
 
     <hr>
@@ -117,9 +169,9 @@ $conn->close();
     <?php if ($statusMsg): ?>
         <p class="msg"><?= htmlspecialchars($statusMsg) ?></p>
     <?php endif; ?>
-          <!-- Butang kembali ke halaman utama dentist -->
-    <div style="margin-right: 30px;">
-        <a href="homepagedentist.php" class="btn back-home">← Back to Home</a>
+
+    <div style="margin-top: 20px;">
+        <a href="homepagedentist.php" class="back-home">← Back to Home</a>
     </div>
 </div>
 </body>

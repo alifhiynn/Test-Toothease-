@@ -47,7 +47,7 @@ if (isset($_POST['book_appointment'])) {
         $stmtCheck->close();
 
         if ($rowCheck['count'] > 0) {
-            $errorMsg = "Slot tarikh & masa telah penuh. Sila pilih yang lain.";
+            $errorMsg = "Date and time slot already booked. Please choose another.";
         } else {
             // Simpan janji temu
             $stmt = $conn->prepare("INSERT INTO appointment (id, dateApp, timeApp) VALUES (?, ?, ?)");
@@ -66,7 +66,7 @@ if (isset($_POST['book_appointment'])) {
                 header("Location: successappointment.php");
                 exit();
             } else {
-                $errorMsg = "Gagal simpan janji temu: " . $stmt->error;
+                $errorMsg = "Fail to save record: " . $stmt->error;
             }
             $stmt->close();
         }
@@ -133,7 +133,7 @@ $conn->close();
 
   dateInput.addEventListener('change', () => {
     if (bookedDates.includes(dateInput.value)) {
-      alert("Tarikh ini sudah penuh. Sila pilih tarikh lain.");
+      alert("This date is full. Please choose another date");
       dateInput.value = "";
     }
   });

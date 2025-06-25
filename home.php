@@ -17,29 +17,26 @@
     <h1>SELAMAT DATANG KE TOOTHEASE</h1>
     <label>SISTEM PERGIGIAN PUSAT KESIHATAN UTeM</label>
 
-    <h2>Perkhidmatan pergigian di Pusat Kesihatan UTeM adalah untuk:</h2>
-    <h3>
-      <ol>
-        <li>Pelajar UTeM</li>
-        <li>Staf UTeM</li>
-      </ol>
-    </h3>
+    <h2>Dental Services at UTeM Health Centre are available for:</h2>
+<ol>
+  <li>UTeM Students</li>
+  <li>UTeM Staff</li>
+</ol>
 
-    <h2>Jenis Perkhidmatan:</h2>
-    <h3>
-      <ul>
-        <li>Perkhidmatan sistem Online Appointment ini adalah untuk kes-kes walk-in sahaja.</li>
-        <li>Bagi kes-kes kecemasan, hendaklah segera mendapatkan rawatan tanpa menempah slot temujanji.</li>
-        <li>Kes-kes kecemasan pergigian adalah seperti berikut:</li>
-      </ul>
-      <ol>
-        <li>Sakit gigi kuat dengan skor kesakitan 7-10</li>
-        <li>Bengkak akibat sakit gigi disusuli simptom sistemik yang lain</li>
-        <li>Penghasilan nanah akibat bengkak</li>
-        <li>Kecederaan mulut dan gigi akibat trauma</li>
-        <li>Pesakit dengan sistem imun yang rendah dengan kesakitan gigi melampau</li>
-      </ol>
-    </h3>
+<h2>Types of Services:</h2>
+<ul>
+  <li>This Online Appointment System is only for walk-in cases.</li>
+  <li>For emergency cases, please seek immediate treatment without booking an appointment slot.</li>
+  <li>Examples of dental emergency cases include:</li>
+</ul>
+<ol>
+  <li>Severe toothache with a pain score of 7–10</li>
+  <li>Swelling due to toothache accompanied by other systemic symptoms</li>
+  <li>Pus formation resulting from swelling</li>
+  <li>Oral and dental injuries caused by trauma</li>
+  <li>Patients with weakened immune systems experiencing extreme tooth pain</li>
+</ol>
+
 
  
     <a href="appointment.php" class="btn">Book Now</a>

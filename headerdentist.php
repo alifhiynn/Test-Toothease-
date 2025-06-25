@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-            <link rel="stylesheet" href="headerdentist.css">
+    <link rel="stylesheet" href="headerdentist.css">
 
   <h2>Dentist Dashboard</h2>
 
