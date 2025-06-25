@@ -2,7 +2,7 @@
 session_start();
 include('connect.php');
 
-<<<<<<< HEAD
+
 // Kira notification belum dibaca
 $stmt = $conn->prepare("SELECT COUNT(*) as total FROM notification WHERE is_read = 0");
 $stmt->execute();
@@ -11,11 +11,9 @@ $data = $result->fetch_assoc();
 $totalNotif = $data['total'];
 $stmt->close();
 
- ?>
-=======
+ 
 // Dapatkan hari ini
 $today = date('Y-m-d');
->>>>>>> dfc52c4c58df926026c863545c241474cb8aa248
 
 // NOTIS: Jumlah janji temu yang dibatalkan hari ini
 $stmt = $conn->prepare("
@@ -50,26 +48,7 @@ $stmt2->close();
   <meta charset="UTF-8">
   <title>Dentist Dashboard - ToothEase</title>
   <link rel="stylesheet" href="homepagedentist.css">
-  <style>
-    .notice-box {
-      margin: 20px auto;
-      padding: 15px;
-      width: 90%;
-      max-width: 700px;
-    }
 
-    .notice {
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      font-weight: bold;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .warning { background-color: #fff3cd; color: #856404; }
-    .danger { background-color: #f8d7da; color: #721c24; }
-    .success { background-color: #d4edda; color: #155724; }
-  </style>
 </head>
 <body>
 

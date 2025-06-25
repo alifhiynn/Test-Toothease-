@@ -60,3 +60,22 @@ body {
       font-weight: bold;
       text-decoration: none;
     }
+
+    .notice-box {
+      margin: 20px auto;
+      padding: 15px;
+      width: 90%;
+      max-width: 700px;
+    }
+
+    .notice {
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      font-weight: bold;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .warning { background-color: #fff3cd; color: #856404; }
+    .danger { background-color: #f8d7da; color: #721c24; }
+    .success { background-color: #d4edda; color: #155724; }
