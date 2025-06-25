@@ -132,7 +132,6 @@ $conn->close();
     <?php endif; ?>
 
     <!-- Form pilih tarikh dan nama -->
->>>>>>> dfc52c4c58df926026c863545c241474cb8aa248
     <form method="get" action="">
         <label>Select Date:</label>
         <input type="date" name="date" value="<?= htmlspecialchars($selected_date) ?>" />
