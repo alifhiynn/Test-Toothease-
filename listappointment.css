@@ -13,7 +13,7 @@
         }
 
         .navbar {
-            background-color: #00695c;
+            background-color: 008CBA;
             padding: 20px 30px;
             display: flex;
             justify-content: space-between;
@@ -40,7 +40,7 @@
         }
 
         h2, h3 {
-            color: #00695c;
+            color: 008CBA;
             margin-bottom: 15px;
         }
 
@@ -95,7 +95,7 @@
         }
 
         th {
-            background-color: #00796b;
+            background-color: #008CBA;
             color: white;
             font-weight: 600;
         }

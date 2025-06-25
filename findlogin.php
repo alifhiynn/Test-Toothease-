@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($input_password, $user['password'])) {
             // Simpan maklumat dlm session
             $_SESSION['username'] = $username;
-            $_SESSION['user_id'] = $user['id']; // Inilah yang penting!
+            $_SESSION['user_id'] = $user['id'];
             $_SESSION['name'] = $user['name'];
 
             header("Location: home.php");

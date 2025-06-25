@@ -72,7 +72,7 @@ $conn->close();
     <?php endif; ?>
 
     <?php if (count($appointmentList) == 0): ?>
-        <p class="error">Tiada janji temu yang layak diberi maklum balas.</p>
+        <p class="error">No appointments are eligible for feedback.</p>
     <?php else: ?>
         <form method="POST">
             <label>Pilih Janji Temu:</label>
@@ -95,9 +95,9 @@ $conn->close();
             </select>
 
             <label>Komen:</label>
-            <textarea name="message" rows="4" placeholder="Tulis maklum balas anda..."></textarea>
+            <textarea name="message" rows="4" placeholder="Write your feedback."></textarea>
 
-            <button type="submit" name="submit_feedback">Hantar Maklum Balas</button>
+            <button type="submit" name="submit_feedback">Send Feedback</button>
         </form>
     <?php endif; ?>
 </div>
