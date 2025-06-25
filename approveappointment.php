@@ -116,9 +116,9 @@ $conn->close();
 <div class="container">
     <h2>Appointment Approval</h2>
 
-<<<<<<< HEAD
+
     <!-- Form nk pilih tarikh dan nama -->
-=======
+
     <!-- Notis pembatalan janji temu -->
     <?php if (!empty($cancelledAppointments)): ?>
         <div class="notice-box">
