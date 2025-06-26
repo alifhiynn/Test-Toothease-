@@ -149,24 +149,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   document.querySelector("form").addEventListener("submit", function (e) {
   const category = document.querySelector('input[name="category"]:checked')?.value;
   const email = document.querySelector('input[name="email"]').value.trim();
+  const ic = document.querySelector('input[name="number"]').value.trim(); // tambahkan ini
 
-  const studentDRegex = /^D\d{9}@student\.utem\.edu\.my$/i;
-  const studentBRegex = /^B\d{9}@student\.utem\.edu\.my$/i;
-  const studentMRegex = /^M\d{9}@student\.utem\.edu\.my$/i;
-  const studentPRegex = /^P\d{9}@student\.utem\.edu\.my$/i;
-
-
-
+  const studentRegex = /^(D|B|M|P)\d{9}@student\.utem\.edu\.my$/i;
   const staffRegex = /^[a-zA-Z0-9._%+-]+@utem\.edu\.my$/i;
 
   if (!/^\d{12}$/.test(ic)) {
     alert("IC number must be exactly 12 digits.");
     e.preventDefault();
   } else if (category === "Student" && !studentRegex.test(email)) {
-    alert("Please Enter Student UTeM Email");
+    alert("Please enter a valid Student UTeM email (e.g., D123456789@student.utem.edu.my)");
     e.preventDefault();
   } else if (category === "Staff" && !staffRegex.test(email)) {
-    alert("Please Enter Staff UTeM Email");
+    alert("Please enter a valid Staff UTeM email (e.g., johndoe@utem.edu.my)");
     e.preventDefault();
   }
 });
